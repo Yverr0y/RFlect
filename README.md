@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://github.com/RFingAdam/RFlect/releases"><img src="https://img.shields.io/badge/version-6.0.0-blue" alt="Version"></a>
   <img src="https://img.shields.io/badge/python-3.11+-green" alt="Python">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-orange" alt="License"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0--or--later-orange" alt="License"></a>
   <img src="https://img.shields.io/badge/tests-450-brightgreen" alt="Tests">
   <a href="https://rfingadam.github.io/RFlect/"><img src="https://img.shields.io/badge/docs-online-blue" alt="Docs"></a>
 </p>
@@ -172,4 +172,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for coding standards, architecture detail
 
 ## License
 
-[GPL-3.0](LICENSE)
+[AGPL-3.0-or-later](LICENSE)
+
+Relicensed from GPL-3.0 to AGPL-3.0-or-later to match the rest of the RF/EMC engineering toolkit's licensing policy — see [eng-mcp-suite's licensing summary](https://github.com/RFingAdam/eng-mcp-suite/blob/main/LICENSE_SUMMARY.md) for the rationale.
