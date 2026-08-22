@@ -51,7 +51,7 @@ def register_propagation_tools(mcp):
         Args:
             tx_power_dbm: Transmit power (dBm).
             rx_sensitivity_dbm: Receiver sensitivity (dBm, typically negative).
-            tx_gain_dbi: Transmit antenna gain (dBi) — e.g. measured peak gain.
+            tx_gain_dbi: Transmit antenna gain (dBi): e.g. measured peak gain.
             rx_gain_dbi: Receive antenna gain (dBi).
             freq_mhz: Frequency (MHz).
             path_loss_exp: Path-loss exponent n (2.0 free space, ~3.0 indoor).

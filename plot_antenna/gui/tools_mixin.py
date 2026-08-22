@@ -1261,7 +1261,7 @@ class ToolsMixin:
 
             # Reference gain-standard HPol/VPol pair is measured with the antenna
             # physically rotated 90° between polarizations, so Axis1 angles
-            # legitimately differ — disable strict angle matching for this flow.
+            # legitimately differ: disable strict angle matching for this flow.
             match, message = check_matching_files(
                 self.hpol_file_path, self.vpol_file_path, strict_angles=False
             )
@@ -1277,7 +1277,7 @@ class ToolsMixin:
             self.btn_import.pack_forget()
 
             self.log_message(
-                "Reference files validated — click 'Generate Calibration File' to produce the output."
+                "Reference files validated: click 'Generate Calibration File' to produce the output."
             )
 
             # Create the new button if it doesn't exist, or just show it if it does
@@ -1432,7 +1432,7 @@ class ToolsMixin:
     # ────────────────────────────────────────────────────────────────────────
 
     def on_enter(self, e):
-        """Mouse hover enter effect — brighten button."""
+        """Mouse hover enter effect: brighten button."""
         if str(e.widget["state"]) == "disabled":
             return
         e.widget._original_bg = e.widget["background"]
@@ -1445,6 +1445,6 @@ class ToolsMixin:
             e.widget["background"] = HOVER_COLOR
 
     def on_leave(self, e):
-        """Mouse hover leave effect — restore original."""
+        """Mouse hover leave effect: restore original."""
         if hasattr(e.widget, "_original_bg"):
             e.widget["background"] = e.widget._original_bg

@@ -2,7 +2,7 @@
 
 Most delegates (batch_process_passive_scans, batch_process_active_scans,
 analyze_uwb_channel) need real chamber data which is not available in CI.
-We monkeypatch those delegates and assert the orchestration logic itself —
+We monkeypatch those delegates and assert the orchestration logic itself:
 intent detection, error handling, mixed-folder priority, warnings shape.
 
 One real-delegate test exercises the cal_drift path using the existing

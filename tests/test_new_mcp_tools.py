@@ -43,7 +43,7 @@ def tools():
 
 
 # ---------------------------------------------------------------------------
-# cal_drift_report — never-raise contract (issue #9)
+# cal_drift_report: never-raise contract (issue #9)
 # ---------------------------------------------------------------------------
 
 
@@ -188,7 +188,7 @@ def test_mimo_capacity_curve(tools):
 
 
 # ---------------------------------------------------------------------------
-# generate_active_cal (validation path — no real chamber files in CI)
+# generate_active_cal (validation path. No real chamber files in CI)
 # ---------------------------------------------------------------------------
 
 

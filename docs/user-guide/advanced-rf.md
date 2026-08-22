@@ -20,9 +20,9 @@ Rayleigh and Rician CDF curves plus Monte-Carlo simulation. Useful for estimatin
 
 ## Enhanced MIMO
 
-- **Capacity curves** — Shannon capacity vs SNR with correlation effects
-- **Combining gain** — selection, equal-gain, maximal-ratio (verified math; see [Math fixes](#math-fixes-v400))
-- **MEG** — Mean Effective Gain with XPR (cross-polarization power ratio)
+- **Capacity curves**: Shannon capacity vs SNR with correlation effects
+- **Combining gain**: selection, equal-gain, maximal-ratio (verified math; see [Math fixes](#math-fixes-v400))
+- **MEG**: Mean Effective Gain with XPR (cross-polarization power ratio)
 
 ## Wearable / Medical
 
@@ -32,8 +32,8 @@ Body-worn pattern adjustments. Dense-device SINR. SAR screening estimator.
 
 The original combining-gain formula was wrong. v4.0.0 verified:
 
-- **Diversity gain** uses the Vaughan-Andersen formula $DG = 10\sqrt{1-\text{ECC}^2}$ — NOT a log-based formula.
-- **Combining gain** validated against simulated MIMO-EVK data; agrees to within float precision (one pre-existing test still rounds `4.999…` vs `5.0` — unrelated to physics).
+- **Diversity gain** uses the Vaughan-Andersen formula $DG = 10\sqrt{1-\text{ECC}^2}$. NOT a log-based formula.
+- **Combining gain** validated against simulated MIMO-EVK data; agrees to within float precision (one pre-existing test still rounds `4.999…` vs `5.0`: unrelated to physics).
 
 ## Kraus efficiency caveat
 
@@ -41,13 +41,13 @@ Kraus formula:
 
 $$\eta_{\text{Kraus}} = \frac{32400}{\text{HPBW}_E \cdot \text{HPBW}_H}$$
 
-Only valid when both HPBW values ≤ 180°. RFlect rejects results that produce $\eta > 100\%$ — the assumption breaks for omnidirectional or low-directivity antennas.
+Only valid when both HPBW values ≤ 180°. RFlect rejects results that produce $\eta > 100\%$. The assumption breaks for omnidirectional or low-directivity antennas.
 
 ## Accessing these modules
 
 Tools menu → Advanced RF Analysis. Sub-dialogs are scrollable since the parameter set is large.
 
-There are currently no MCP wrappers for these modules. Open an issue if you need one — most are pure-Python in `plot_antenna/advanced_*` and could be wrapped quickly.
+There are currently no MCP wrappers for these modules. Open an issue if you need one. Most are pure-Python in `plot_antenna/advanced_*` and could be wrapped quickly.
 
 ## RF method gallery (v6.0)
 
@@ -55,12 +55,12 @@ The figures below are authentic outputs of the new v6.0 RF methods
 (`plot_antenna/rf_methods.py`, exposed as MCP tools). Regenerate them with
 `python docs/generate_example_figures.py`.
 
-### Uniform linear array — electronic beam steering
+### Uniform linear array: electronic beam steering
 
 ![Array factor steering](../assets/screenshots/example_array_factor.png)
 
 An 8-element, 0.5 λ array steered to 0°, 20°, and 45°. Note the main beam
-broadening (scan loss) as it steers off broadside — the reported HPBW grows from
+broadening (scan loss) as it steers off broadside. The reported HPBW grows from
 ~13° to ~18°.
 
 ### Aperture taper trade-off

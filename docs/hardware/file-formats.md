@@ -9,10 +9,10 @@ The primary format. Plain-text, header + tabular data. RFlect supports both V5.0
 ### Passive (HPOL or VPOL)
 
 Header contains:
-- `Frequency` (MHz) — one or more
+- `Frequency` (MHz). One or more
 - `Start Phi`, `Stop Phi`, `Inc Phi` (degrees)
 - `Start Theta`, `Stop Theta`, `Inc Theta`
-- `Polarization` — `Horizontal` or `Vertical`
+- `Polarization`: `Horizontal` or `Vertical`
 
 Data block: gain (dBi) per ($\theta$, $\phi$) cell. RFlect's parser: `read_passive_file()`.
 
@@ -43,9 +43,9 @@ Used for:
 ## S2VNA `.csv`
 
 Copper Mountain S2VNA software exports CSV with a fixed column convention RFlect understands:
-- `! Stimulus(Hz)` — frequency
-- `S11(dB)`, `S21(dB)` — magnitudes
-- `S21(s)` — group delay (seconds)
+- `! Stimulus(Hz)`: frequency
+- `S11(dB)`, `S21(dB)`: magnitudes
+- `S21(s)`: group delay (seconds)
 
 Parsed by `parse_2port_data()`. Auto-detected from `.csv` extension + columns.
 
@@ -59,7 +59,7 @@ Far-field exports from CST Studio Suite. Read by `plot_antenna/plot_group_delay_
 
 ## CST `.ffs` (output only)
 
-RFlect can **export** to CST Farfield Source format via the `convert_to_cst` MCP tool — useful for moving measured patterns into a simulation toolchain.
+RFlect can **export** to CST Farfield Source format via the `convert_to_cst` MCP tool: useful for moving measured patterns into a simulation toolchain.
 
 ## Auto-detection in `process_folder`
 

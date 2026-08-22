@@ -5,9 +5,9 @@ Single source of truth for the small formatting helpers that were duplicated
 between the GUI report builder (plot_antenna/save.py) and the MCP report builder
 (rflect-mcp/tools/report_tools.py). Pure formatting; no IO.
 
-The full table-builder functions intentionally remain in each builder — their
+The full table-builder functions intentionally remain in each builder. Their
 signatures diverged over time and unifying them would risk the (tested) MCP
-report layout — but the trivial, identical helpers below are now shared.
+report layout, but the trivial, identical helpers below are now shared.
 """
 
 from __future__ import annotations

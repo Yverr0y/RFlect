@@ -11,7 +11,7 @@ Core calculation functions for Ultra-Wideband antenna characterization:
 - S11/VSWR return loss analysis
 - Multi-angle SFF sweeps
 
-All functions are pure numpy/scipy — no matplotlib imports.
+All functions are pure numpy/scipy. No matplotlib imports.
 """
 
 import numpy as np

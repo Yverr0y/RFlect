@@ -15,7 +15,7 @@ from tqdm import tqdm
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 
-# ——— CONSTANTS ——————————————————————————————————
+# --- CONSTANTS ---------------------------------------------------------------
 STATIC_COLS = [
     "Theta [deg.]",
     "Phi [deg.]",
@@ -29,7 +29,7 @@ STATIC_COLS = [
 C = 3e8  # speed of light (m/s)
 
 
-# ——— TIMING DECORATOR ——————————————————————————————
+# --- TIMING DECORATOR --------------------------------------------------------
 def timed(name):
     def decorator(fn):
         @wraps(fn)
@@ -44,7 +44,7 @@ def timed(name):
     return decorator
 
 
-# ——— PARSING HELPERS —————————————————————————————
+# --- PARSING HELPERS ---------------------------------------------------------
 """
 Read a far-field data file and extract the frequency and data.
 The data is expected to be in a specific format with 8 columns.
@@ -90,7 +90,7 @@ def read_farfield_file(path: str) -> tuple[float, pd.DataFrame]:
     return extract_frequency(path), df
 
 
-# ——— CORE: build phase‑vs‑freq matrix per plane ——————————————————
+# --- CORE: build phase‑vs‑freq matrix per plane ------------------------------
 """
 Compute the phase data for a given plane (horizontal or vertical) from the far-field files.
 Parameters:
@@ -136,7 +136,7 @@ def phase_to_tau(P_deg, freqs):
     return -dphi_dω * 1e9  # ns
 
 
-# ——— φ‑based group‑delay calculation ——————————————————
+# --- φ‑based group‑delay calculation -----------------------------------------
 """
 Compute the far-field data for both horizontal and vertical polarizations.
 
@@ -216,7 +216,7 @@ def compute_group_delay(
     return phis, delays, all_delays
 
 
-# ——— PLOTTING FUNCTIONS —————————————————————————————————
+# --- PLOTTING FUNCTIONS ------------------------------------------------------
 def plot_group_delay_vs_phi(phis, delays):
     plt.figure(figsize=(10, 4))
     plt.plot(phis, delays, "o-", lw=1.5)
@@ -465,7 +465,7 @@ def plot_group_delay_map(thetas, phis, tau):
     plt.show()
 
 
-# ——— NEW FIDELITY SECTION (auto‑detect band) ——————————————————
+# --- NEW FIDELITY SECTION (auto‑detect band) ---------------------------------
 """
 Compute the fidelity of the antenna at boresight.
 Parameters:
@@ -481,7 +481,7 @@ Returns:
 """
 
 
-# ——— PLOTTING —————————————————————————————————
+# --- PLOTTING ----------------------------------------------------------------
 def _split_clusters(idx: np.ndarray) -> list[np.ndarray]:
     """Split a sorted index array into contiguous runs."""
     if idx.size == 0:
@@ -498,7 +498,7 @@ def plot_io_pulse(tt: np.ndarray, inp: np.ndarray, out_raw: np.ndarray, delay_ns
     # time in ns
     t_ns = tt * 1e9
 
-    # — pad the TX pulse so it’s the same length as the RX —
+    #: pad the TX pulse so it’s the same length as the RX:
     vin = np.real(inp)
     if vin.shape[0] < out_raw.shape[0]:
         vin_full = np.zeros_like(out_raw)
@@ -588,7 +588,7 @@ def plot_fidelity_vs_theta(thetas: np.ndarray, fids: np.ndarray, band: tuple[flo
     plt.show()
 
 
-# ——— NEW FIDELITY SECTION (auto‑detect band) ——————————————————
+# --- NEW FIDELITY SECTION (auto‑detect band) ---------------------------------
 @timed("Compute fidelity")
 def compute_fidelity_at_boresight(
     files: list[str],
@@ -606,12 +606,12 @@ def compute_fidelity_at_boresight(
     R_lin   : antenna output (linear convolution)
     delay_s : estimated one-way group delay (s)
     """
-    # — determine the band —
+    #: determine the band:
     all_fs = sorted(extract_frequency(p) for p in files)
     if band is None:
         band = (all_fs[0], all_fs[-1])
 
-    # — gather boresight amp & phase —
+    #: gather boresight amp & phase:
     amp_phase = []
     for p in sorted(files):
         f, df = read_farfield_file(p)
@@ -631,7 +631,7 @@ def compute_fidelity_at_boresight(
     amp_phase.sort(key=lambda x: x[0])
     Fs, A_vals, phases = map(np.array, zip(*amp_phase))
 
-    # — build the UWB Gaussian pulse —
+    #: build the UWB Gaussian pulse:
     fs = 4 * band[1]
     dt = 1.0 / fs
     t_p = np.arange(Nfft) * dt
@@ -643,7 +643,7 @@ def compute_fidelity_at_boresight(
     gauss = np.exp(-0.5 * ((t_p - center) / σ) ** 2)
     pulse = carrier * gauss
 
-    # — build H(f) with Hermitian symmetry —
+    #: build H(f) with Hermitian symmetry:
     win = np.blackman(Nfft)
     Pp = np.fft.fft(pulse * win)
     freq_v = np.fft.fftfreq(Nfft, dt)
@@ -655,12 +655,12 @@ def compute_fidelity_at_boresight(
     half = Nfft // 2
     Hf[half + 1 :] = np.conj(Hf[1:half][::-1])
 
-    # — get antenna impulse response h(n) —
+    #: get antenna impulse response h(n):
     h = np.fft.ifft(Hf)
     peak = np.argmax(np.abs(h))
     h = np.roll(h, -peak)  # move main lobe to n=0
 
-    #  — window the impulse response so only the main lobe remains —
+    # : window the impulse response so only the main lobe remains:
     thr_h = 0.02 * np.max(np.abs(h))
     idx_h = np.where(np.abs(h) > thr_h)[0]
 
@@ -676,16 +676,16 @@ def compute_fidelity_at_boresight(
     else:
         print("[WARN] No main lobe detected in h(n)")
 
-    # — **linear** convolution to avoid wrap-around —
+    #: **linear** convolution to avoid wrap-around:
     R_lin = fftconvolve(pulse, h, mode="full")
     t_lin = np.arange(len(R_lin)) * dt
 
-    # — cross-correlate & normalize —
+    #: cross-correlate & normalize:
     corr = correlate(R_lin, pulse, mode="full")
     norm = np.sqrt(np.sum(np.abs(pulse) ** 2) * np.sum(np.abs(R_lin) ** 2))
     corr /= norm
 
-    # — choose the first positive peak for one-way delay —
+    #: choose the first positive peak for one-way delay:
     lags = np.arange(-len(pulse) + 1, len(pulse)) * dt
     pos = np.where(lags > 0)[0]
     best = pos[np.argmax(np.abs(corr[pos]))]
@@ -732,7 +732,7 @@ def plot_correlation(corr: np.ndarray, dt: float) -> None:
     plt.show()
 
 
-# ——— ECC FUNCTIONS ———————————————————————————————
+# --- ECC FUNCTIONS -----------------------------------------------------------
 def compute_ecc_from_farfield(path1: str, path2: str, freq_Hz: float, tol_Hz: float = 1e6) -> float:
     """
     Compute full‐field ECC by integrating both Eθ and Eφ over the sphere:
@@ -797,18 +797,18 @@ def plot_ecc_summary(ecc_results: list[tuple[float, float]]):
     plt.show()
 
 
-# ——— MAIN UI —————————————————————————————————
+# --- MAIN UI -----------------------------------------------------------------
 def main():
     root = tk.Tk()
     root.title("RFlect – Group Delay, Fidelity & ECC Analyzer")
 
-    # — Polarization selection —
+    #: Polarization selection:
     tk.Label(root, text="Select dominant polarization:").pack(pady=(10, 0))
     var_pol = tk.StringVar(value="Total")  # default to Total
     for v in ("Theta", "Phi", "Total"):  # add Total
         tk.Radiobutton(root, text=v, variable=var_pol, value=v).pack(anchor="w", padx=20)
 
-    # — Analysis mode —
+    #: Analysis mode:
     tk.Label(root, text="Select analysis type:").pack(pady=(10, 0))
     var_mode = tk.StringVar(value="GroupDelay")
     for text, val in [
@@ -817,7 +817,7 @@ def main():
     ]:
         tk.Radiobutton(root, text=text, variable=var_mode, value=val).pack(anchor="w", padx=20)
 
-    # — ECC frequency sampling (only used if ECC chosen) —
+    #: ECC frequency sampling (only used if ECC chosen):
     tk.Label(root, text="ECC frequency sampling:").pack(pady=(10, 0))
     var_ecc_freq = tk.StringVar(value="FullBand")
     for text, val in [
@@ -844,7 +844,7 @@ def main():
                 return
             root.destroy()
 
-            # — Existing group-delay & fidelity pipeline —
+            #: Existing group-delay & fidelity pipeline:
             all_fs = sorted(extract_frequency(p) for p in files)
             full_band = (all_fs[0], all_fs[-1])
 
@@ -885,7 +885,7 @@ def main():
             plot_peak_to_peak_over_phi(freqs, τ_phi)
             plot_max_error_over_phi(freqs, τ_phi)
 
-            # — FIDELITY: full‑band I/O pulse @ φ=0° —
+            #: FIDELITY: full‑band I/O pulse @ φ=0°:
             NFFT_FID = 16384  # ← bump for finer time resolution
 
             F0, t_lin, pulse, R_lin, delay_s = compute_fidelity_at_boresight(
@@ -899,7 +899,7 @@ def main():
             )
             plot_io_pulse(t_lin, pulse, R_lin, delay_ns)
 
-            # — FIDELITY vs φ at 30° steps over full band -----------------------
+            #: FIDELITY vs φ at 30° steps over full band -----------------------
             # fidelity vs φ
             phis30 = np.arange(0, 360, 30)
             fid30 = []
@@ -915,7 +915,7 @@ def main():
                 fid30.append(f)
             plot_fidelity_vs_phi(phis30, np.array(fid30), full_band)
 
-            # — FIDELITY vs θ at 15° steps over full band —
+            #: FIDELITY vs θ at 15° steps over full band:
             thetas = np.arange(0, 181, 15)
             fid_th = []
             for θ in thetas:
@@ -930,13 +930,13 @@ def main():
                 fid_th.append(f)
             plot_fidelity_vs_theta(thetas, np.array(fid_th), full_band)
         else:  # ECC mmode
-            # — pick ANT1 files —
+            #: pick ANT1 files:
             ant1_files = filedialog.askopenfilenames(
                 title="Select ANT 1 CST far-field .txt files", filetypes=[("Text files", "*.txt")]
             )
             if not ant1_files:
                 return
-            # — pick ANT2 files —
+            #: pick ANT2 files:
             ant2_files = filedialog.askopenfilenames(
                 title="Select ANT 2 CST far-field .txt files", filetypes=[("Text files", "*.txt")]
             )

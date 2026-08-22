@@ -22,7 +22,7 @@ rflect
 python rflect-mcp/server.py
 ```
 
-Blocks waiting for stdio MCP traffic. Usually launched by your MCP client, not by hand — see [MCP installation](../mcp/installation.md).
+Blocks waiting for stdio MCP traffic. Usually launched by your MCP client, not by hand. See [MCP installation](../mcp/installation.md).
 
 ## Test suite
 
@@ -66,8 +66,8 @@ bump2version major     # 4.2.0 → 5.0.0
 
 Sources of truth for the version (`.bumpversion.cfg`):
 
-- `pyproject.toml` — `version = "..."`
-- `plot_antenna/__init__.py` — `__version__ = "..."`
-- `README.md` — version badge
-- `installer.iss` — `RFLECT_VERSION`
-- `settings.json` — `CURRENT_VERSION`
+- `pyproject.toml`: `version = "..."`
+- `plot_antenna/__init__.py`: `__version__ = "..."`
+- `README.md`: version badge
+- `installer.iss`: `RFLECT_VERSION`
+- `settings.json`: `CURRENT_VERSION`

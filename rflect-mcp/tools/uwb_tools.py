@@ -126,7 +126,7 @@ def register_uwb_tools(mcp):
 
         Args:
             file_paths: List of file paths to process.
-            pulse_type: Pulse type — 'gaussian_monocycle', 'modulated_gaussian',
+            pulse_type: Pulse type: 'gaussian_monocycle', 'modulated_gaussian',
                         or '5th_derivative_gaussian'.
             min_freq_ghz: Optional minimum frequency filter in GHz.
             max_freq_ghz: Optional maximum frequency filter in GHz.

@@ -177,7 +177,7 @@ def parse_ref_file_header(path: str | os.PathLike) -> Dict[str, Optional[str | f
                 if s.startswith("Signal Source:"):
                     result["signal_source"] = s.split(":", 1)[1].strip()
                 elif "Receiver:" in s and result["receiver"] is None:
-                    # "HPOL Receiver:" or "VPOL Receiver:" — first wins
+                    # "HPOL Receiver:" or "VPOL Receiver:": first wins
                     result["receiver"] = s.split(":", 1)[1].strip()
                 elif s.startswith("Output Level:"):
                     val = s.split(":", 1)[1].strip()
@@ -487,7 +487,7 @@ def record_run(
     {output_path, summary_path, rows_written, rows_missing}.
 
     Args (added v6.0):
-        cal_type: "active" (default) or "passive" — passive cal files in the
+        cal_type: "active" (default) or "passive": passive cal files in the
             same Freq/H-Pol/V-Pol tabular format are tracked + drift-compared
             identically (#6).
         cable_loss_file: optional .s2p cable-loss reference tracked alongside
@@ -581,7 +581,7 @@ def set_setup_group(run_id: str, group: str) -> bool:
     The setup_group names a methodology epoch (e.g. "pre-2024-cable-change",
     "2026-v2-mount"). When two runs with different setup_group values are
     compared, compute_drift flags the setup_group field as mismatched on the
-    consistency tab — a loud visual signal that the comparison may not be
+    consistency tab. A loud visual signal that the comparison may not be
     apples-to-apples.
     """
     return _update_string_field(run_id, "setup_group", group)
@@ -696,7 +696,7 @@ def _resolve_inputs(cal_file: Path, summary: Optional[Path]) -> Dict[str, str]:
     Filename-pattern scan matches ref/gain files to the antenna/band encoded
     in the cal filename (e.g. a 'TRP Cal BLPA 690-2700 ...' cal gets matched
     to the 'BLPA 690-2700 AP_*Pol.txt' ref files and the 'Howland BLPA*' gain
-    standard — not the HORN gain file that may sit in the same directory).
+    standard: not the HORN gain file that may sit in the same directory).
     """
     resolved: Dict[str, str] = {
         "power_file": "",
@@ -724,7 +724,7 @@ def _resolve_inputs(cal_file: Path, summary: Optional[Path]) -> Dict[str, str]:
                 local = parent / Path(ref.replace("\\", "/")).name
                 resolved[dst_key] = str(local) if local.exists() else ""
 
-    # Fallback scan — match by antenna/band to avoid grabbing the wrong pair
+    # Fallback scan: match by antenna/band to avoid grabbing the wrong pair
     # when BLPA and HORN cal files coexist in the same directory.
     def _band_match(name: str) -> bool:
         return bool(band) and band in name
@@ -862,7 +862,7 @@ def evaluate_drift_alert(
     """Classify a DriftResult against warn/alert thresholds (issue #4).
 
     Looks at the worst per-polarization mean drift and max absolute drift and
-    returns a level — "OK", "WARN", or "ALERT" — with the triggering reasons.
+    returns a level: "OK", "WARN", or "ALERT": with the triggering reasons.
     Pure function (no IO); thresholds default to the module's soft/hard outlier
     levels.
 
@@ -1033,8 +1033,8 @@ def export_markdown(result: DriftResult, out_path: str | os.PathLike) -> None:
     lines = [
         f"# Calibration Drift: {b.antenna} {b.band_label}",
         "",
-        f"- **Baseline:** {b.date} ({b.run_id}) — {b.rows_written} rows",
-        f"- **Current:** {c.date} ({c.run_id}) — {c.rows_written} rows",
+        f"- **Baseline:** {b.date} ({b.run_id}): {b.rows_written} rows",
+        f"- **Current:** {c.date} ({c.run_id}): {c.rows_written} rows",
         "",
         "## Summary stats",
         "",
@@ -1099,7 +1099,7 @@ def export_pdf(result: DriftResult, out_path: str | os.PathLike) -> None:
         b = result.baseline
         c = result.current
         text = [
-            f"Calibration Drift Report — {b.antenna} {b.band_label}",
+            f"Calibration Drift Report: {b.antenna} {b.band_label}",
             f"Baseline: {b.date} ({b.run_id})",
             f"Current:  {c.date} ({c.run_id})",
             "",

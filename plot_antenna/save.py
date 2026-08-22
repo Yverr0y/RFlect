@@ -407,7 +407,7 @@ class RFAnalyzer:
         return conclusions
 
 
-# Shared formatting helper (#36) — single source of truth in plot_antenna.docx_helpers.
+# Shared formatting helper (#36): single source of truth in plot_antenna.docx_helpers.
 from .docx_helpers import fmt_value as _fmt
 
 

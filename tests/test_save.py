@@ -39,7 +39,7 @@ class TestDetectMeasurementType:
 class TestExtractFrequency:
     def test_basic_mhz(self):
         # Returns a frequency token from the filename (exact format is the
-        # contract under test — just assert it finds the 2450 value).
+        # contract under test: just assert it finds the 2450 value).
         out = extract_frequency_from_filename("gain_2450MHz.png")
         assert "2450" in str(out)
 

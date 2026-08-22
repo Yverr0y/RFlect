@@ -1342,7 +1342,7 @@ Features:
                 insertbackground=LIGHT_TEXT_COLOR,
             ).grid(row=3, column=1, columnspan=3, sticky=tk.W, padx=5, pady=2)
 
-            # Note: Conducted power fields are not shown for passive scans —
+            # Note: Conducted power fields are not shown for passive scans:
             # VNA-based gain measurements don't involve a radio transmitter.
 
             # Advanced analysis settings (Link Budget, Indoor, Fading, Wearable)

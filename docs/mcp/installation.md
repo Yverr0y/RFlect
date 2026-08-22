@@ -1,8 +1,8 @@
 # MCP Installation
 
 Add RFlect's MCP server to your MCP client. The server entry point is
-`rflect-mcp/server.py`. RFlect runs identically on **Linux, macOS, and Windows**
-— the only per-OS differences are the Python path and where your client keeps
+`rflect-mcp/server.py`. RFlect runs identically on **Linux, macOS, and Windows**.
+The only per-OS differences are the Python path and where your client keeps
 its config.
 
 ## 1. Install RFlect + MCP dependencies
@@ -82,7 +82,7 @@ Restart Claude Code; you should see **41** RFlect tools available.
 
 ### Cline (VS Code)
 
-`.cline/mcp_settings.json` in your project root (same shape on every OS — just
+`.cline/mcp_settings.json` in your project root (same shape on every OS: just
 swap the Python path):
 
 === "Linux / macOS"
@@ -137,7 +137,7 @@ Continue uses `~/.continue/config.json` (Linux/macOS) or
 ### Other MCP clients
 
 Any client supporting stdio MCP can host the server. The launch command is
-always your venv Python plus the server path — no special args:
+always your venv Python plus the server path. No special args:
 
 ```
 <venv-python> /path/to/rflect-mcp/server.py
@@ -145,7 +145,7 @@ always your venv Python plus the server path — no special args:
 
 ## 3. Verify
 
-Ask the assistant *"What RFlect tools do you have?"* — it should list **41**.
+Ask the assistant *"What RFlect tools do you have?"*. It should list **41**.
 Or run the smoke test from a shell (works on every OS):
 
 === "Linux / macOS"
@@ -168,5 +168,5 @@ Expected: `tools: 41`.
 
 If the server fails to connect, see [Troubleshooting](troubleshooting.md). The
 most common cause is pointing `command` at a Python that doesn't have the
-`rflect-mcp/requirements.txt` dependencies installed — use the venv interpreter,
+`rflect-mcp/requirements.txt` dependencies installed. Use the venv interpreter,
 not the system `python`.

@@ -5,14 +5,14 @@ from tkinter import messagebox, simpledialog
 import matplotlib
 
 try:
-    matplotlib.use("TkAgg")  # noqa: E402 — must precede pyplot import
+    matplotlib.use("TkAgg")  # noqa: E402: must precede pyplot import
 except ImportError:
-    # No display available (e.g. headless CI test collection) — fall back
+    # No display available (e.g. headless CI test collection): fall back
     # to a non-interactive backend instead of crashing on import.
     matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-plt.ion()  # Non-blocking show() — avoids "main thread is not in main loop" with Tkinter GUI
+plt.ion()  # Non-blocking show(): avoids "main thread is not in main loop" with Tkinter GUI
 from matplotlib import cm
 from matplotlib.colors import Normalize
 import numpy as np
@@ -25,7 +25,7 @@ from .config import (
     polar_dB_min,
 )
 
-# Shared plot style + save helpers (#41) — single source of truth for output
+# Shared plot style + save helpers (#41): single source of truth for output
 # dpi/format and a small colormap registry, so styling isn't duplicated across
 # the many plot_* functions. Existing call sites migrate to save_figure()
 # incrementally; new plots should use it.
@@ -394,12 +394,12 @@ def _setup_3d_axes(ax, X, Y, Z):
 
     Professional-style 3-D antenna gain plot with DUT orientation:
 
-    * **Equal aspect ratio** via ``set_box_aspect([1,1,1])`` — no
+    * **Equal aspect ratio** via ``set_box_aspect([1,1,1])``. No
       axis stretching.
     * **Symmetric limits** centred on the origin so the pattern sits
       in the middle of the bounding box.
     * **Box-edge axis labels** via ``set_xlabel / ylabel / zlabel``
-      — rendered in the 2D overlay layer, never occluded.
+     : rendered in the 2D overlay layer, never occluded.
     * **Short origin arrows** that mirror the physical orientation
       marker used in the anechoic chamber (X green, Y red, Z blue).
       They extend from the *negative* side of each axis toward the
@@ -422,7 +422,7 @@ def _setup_3d_axes(ax, X, Y, Z):
     if not np.isfinite(max_ext) or max_ext <= 0:
         max_ext = 1.0
 
-    # ---- Symmetric limits — centres the pattern in the box ----
+    # ---- Symmetric limits: centres the pattern in the box ----
     lim = 1.02 * max_ext
     ax.set_xlim(-lim, lim)
     ax.set_ylim(-lim, lim)
@@ -446,7 +446,7 @@ def _setup_3d_axes(ax, X, Y, Z):
     ax.set_yticklabels([])
     ax.set_zticklabels([])  # type: ignore
 
-    # ---- Box-edge axis labels (2D overlay — never occluded) ----
+    # ---- Box-edge axis labels (2D overlay: never occluded) ----
     _label_kw = dict(fontsize=14, fontweight="bold", labelpad=2)
     ax.set_xlabel("X", color="green", **_label_kw)
     ax.set_ylabel("Y", color="red", **_label_kw)
@@ -454,12 +454,12 @@ def _setup_3d_axes(ax, X, Y, Z):
 
     # ---- DUT orientation triad ----
     # A three-arrow tripod anchored at the (-lim, -lim, -lim) corner,
-    # pointing in +X, +Y, +Z — mirrors the physical orientation
+    # pointing in +X, +Y, +Z: mirrors the physical orientation
     # marker placed on the DUT in the anechoic chamber.
     # All three arrows share the same origin so they form a
     # recognisable XYZ triad from every viewing angle.
     corner = -lim  # common origin at the negative corner
-    arrow_len = 0.35 * lim  # short — just an orientation hint
+    arrow_len = 0.35 * lim  # short: just an orientation hint
 
     _arrow_spec = [
         # (dx, dy, dz, colour)
@@ -1898,7 +1898,7 @@ def _prepare_gain_grid(theta_angles_deg, phi_angles_deg, gain_data, freq_idx):
     Reshape flat passive measurement data into a 2D gain grid.
 
     For passive data, theta/phi/gain arrays are 2D with shape (n_points, n_freqs).
-    For active data, gain_2d is already (n_theta, n_phi) — passed through unchanged.
+    For active data, gain_2d is already (n_theta, n_phi): passed through unchanged.
 
     Parameters:
         theta_angles_deg: Theta angle array (1D for active, 2D for passive)
@@ -2094,7 +2094,7 @@ def plot_conical_cuts(
         ax.set_xlabel("Phi (degrees)")
         ax.set_ylabel(f"{data_label} ({data_unit})")
         ax.set_title(
-            f"{data_label} over Azimuth @ {frequency} MHz — {theta_range_str}",
+            f"{data_label} over Azimuth @ {frequency} MHz: {theta_range_str}",
             fontsize=14,
         )
         ax.grid(True, alpha=0.3)
@@ -2173,7 +2173,7 @@ def plot_gain_over_azimuth(
     ax.set_xlabel("Phi (degrees)")
     ax.set_ylabel(f"{data_label} ({data_unit})")
     theta_range_str = f"θ={theta_cuts[0]}–{theta_cuts[-1]}°"
-    ax.set_title(f"{data_label} over Azimuth @ {frequency} MHz — {theta_range_str}", fontsize=14)
+    ax.set_title(f"{data_label} over Azimuth @ {frequency} MHz: {theta_range_str}", fontsize=14)
     ax.legend(loc="upper right", bbox_to_anchor=(1.2, 1.0), fontsize=8)
     ax.grid(True, alpha=0.3)
 
@@ -2695,7 +2695,7 @@ def generate_maritime_plots(
         save_path=save_path,
     )
 
-    # 4. Data-over-Azimuth (Cartesian) — Gain/dBi for passive, Power/dBm for active
+    # 4. Data-over-Azimuth (Cartesian): Gain/dBi for passive, Power/dBm for active
     plot_gain_over_azimuth(
         theta_deg,
         phi_deg,
@@ -2741,7 +2741,7 @@ def generate_maritime_plots(
     )
 
 
-# ——— LINK BUDGET & RANGE ESTIMATION PLOTS ——————————————————————————
+# --- LINK BUDGET & RANGE ESTIMATION PLOTS ------------------------------------
 
 
 # Advanced-analysis plot family extracted to advanced_plots.py (#38); re-exported
@@ -2756,7 +2756,7 @@ from .advanced_plots import (
 )
 
 
-# ——— DISPATCHER FOR ADVANCED ANALYSIS PLOTS ——————————————————————
+# --- DISPATCHER FOR ADVANCED ANALYSIS PLOTS ----------------------------------
 
 
 def generate_advanced_analysis_plots(
@@ -2881,7 +2881,7 @@ def dispatch_advanced_analysis_plots(
     Operates on the grouped :class:`AdvancedAnalysisConfig` instead of 30+ flat
     keyword arguments. Each ``if <group>.enabled:`` branch is independent. Note
     that the indoor and fading branches intentionally reuse link-budget
-    parameters (Tx/Rx power, range, path-loss, losses) — this mirrors the GUI,
+    parameters (Tx/Rx power, range, path-loss, losses). This mirrors the GUI,
     where those panels share the link-budget inputs.
     """
     lb = config.link_budget

@@ -19,7 +19,7 @@ This template provides neutral/generic branding by default.
 
 interpolate_3d_plots = True  # Default value, can be set to False to disable interpolation
 
-# 3D Axis Scaling — per plot type (auto | manual)
+# 3D Axis Scaling: per plot type (auto | manual)
 AXIS_SCALE_MODE_TOTAL = "auto"
 AXIS_MIN_TOTAL = -20.0
 AXIS_MAX_TOTAL = 10.0
@@ -68,7 +68,7 @@ WARNING_COLOR = "#FFC107"
 SUCCESS_COLOR = "#4CAF50"
 INFO_COLOR = "#4A90E2"
 
-# Platform-aware font family (Linux/macOS/Windows) — defined first so every
+# Platform-aware font family (Linux/macOS/Windows): defined first so every
 # font constant below uses a family that actually exists on the host. "Arial"
 # is not guaranteed on Linux and caused Tk substitution / misaligned dialogs.
 import sys as _sys

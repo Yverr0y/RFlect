@@ -9,7 +9,7 @@ def calculate_trp(power_dBm_2d, theta_angles_rad, inc_theta, inc_phi, method="re
     Calculate Total Radiated Power (TRP) using the CTIA/IEEE-149 discrete
     solid-angle integration.
 
-    The per-angle input is EIRP — the isotropic-referenced power measured in
+    The per-angle input is EIRP. The isotropic-referenced power measured in
     each direction (after path-loss calibration). For EIRP, TRP is the
     sphere average of EIRP, i.e. the standard CTIA discrete form:
 
@@ -19,7 +19,7 @@ def calculate_trp(power_dBm_2d, theta_angles_rad, inc_theta, inc_phi, method="re
     The 1/(4π) is correct *because the input is EIRP*, not radiation intensity
     U (W/sr); for an isotropic radiator with EIRP = P0 in every direction this
     integrates back to TRP = P0 (verified by the golden-reference test). Do not
-    remove the 1/(4π) — see docs/REVIEW_2026-05.md (finding R7/R8).
+    remove the 1/(4π). See docs/REVIEW_2026-05.md (finding R7/R8).
 
     Parameters:
         power_dBm_2d: 2D array of per-angle EIRP in dBm (theta x phi)
@@ -52,7 +52,7 @@ def calculate_trp(power_dBm_2d, theta_angles_rad, inc_theta, inc_phi, method="re
         weighted = power_mW * (theta_weight * w_theta)[:, np.newaxis]
         TRP_mW = np.sum(weighted) * dtheta * dphi / (4 * np.pi)
     else:
-        # Rectangular (midpoint) rule — TRP = sum(P*sinθ)*dθ*dφ / (4π).
+        # Rectangular (midpoint) rule: TRP = sum(P*sinθ)*dθ*dφ / (4π).
         TRP_mW = np.sum(power_mW * theta_weight[:, np.newaxis]) * dtheta * dphi / (4 * np.pi)
 
     TRP_dBm = 10 * np.log10(np.maximum(TRP_mW, 1e-12))  # Protect against log(0)
@@ -643,7 +643,7 @@ def capacity_monte_carlo(ecc, snr_db, fading="rayleigh", K=10, trials=2000):
     trials   : number of channel realizations
     returns  : average capacity (b/s/Hz)
     """
-    ecc = float(ecc)  # Enforce scalar — 2x2 correlation matrix requires single value
+    ecc = float(ecc)  # Enforce scalar: 2x2 correlation matrix requires single value
     rho = 10 ** (snr_db / 10.0)
     # correlation matrix R
     R = np.array([[1, ecc], [ecc, 1]], dtype=complex)
@@ -670,7 +670,7 @@ def capacity_monte_carlo(ecc, snr_db, fading="rayleigh", K=10, trials=2000):
     return np.mean(caps)
 
 
-# ——— POLARIZATION ANALYSIS FUNCTIONS ——————————————————————————————
+# --- POLARIZATION ANALYSIS FUNCTIONS -----------------------------------------
 def calculate_polarization_parameters(hpol_data, vpol_data, cable_loss=0.0):
     """
     Calculate polarization parameters from HPOL and VPOL passive measurement data.
@@ -860,7 +860,7 @@ def export_polarization_data(pol_results, output_path, format="csv"):
                     )
 
 
-# ——— LINK BUDGET & RANGE ESTIMATION ——————————————————————————————
+# --- LINK BUDGET & RANGE ESTIMATION ------------------------------------------
 
 # Protocol presets: {name: (rx_sensitivity_dBm, tx_power_dBm, freq_mhz)}
 PROTOCOL_PRESETS = {
@@ -1042,7 +1042,7 @@ def range_vs_azimuth(
     return range_m, horizon_gain
 
 
-# ——— INDOOR / ENVIRONMENTAL PROPAGATION ——————————————————————————
+# --- INDOOR / ENVIRONMENTAL PROPAGATION --------------------------------------
 
 
 def log_distance_path_loss(freq_mhz, distance_m, n=2.0, d0=1.0, sigma_db=0.0):
@@ -1195,7 +1195,7 @@ def apply_indoor_propagation(
     return received_power_2d, path_loss_total
 
 
-# ——— MULTIPATH FADING MODELS ———————————————————————————————————
+# --- MULTIPATH FADING MODELS -------------------------------------------------
 
 
 def rayleigh_cdf(power_db, mean_power_db=0.0):
@@ -1349,7 +1349,7 @@ def apply_statistical_fading(
     Returns:
         mean_db: 2D mean gain (dB) per angle
         std_db: 2D standard deviation (dB) per angle
-        outage_5pct_db: 2D 5th-percentile gain (dB) — worst 5% fade
+        outage_5pct_db: 2D 5th-percentile gain (dB): worst 5% fade
     """
     n_theta, n_phi = gain_2d.shape
     gain_lin = 10 ** (gain_2d / 10.0)
@@ -1406,7 +1406,7 @@ def delay_spread_estimate(distance_m, environment="indoor"):
     return base * np.sqrt(max(distance_m, 1.0) / 10.0)
 
 
-# ——— ENHANCED MIMO ANALYSIS ——————————————————————————————————————
+# --- ENHANCED MIMO ANALYSIS --------------------------------------------------
 
 
 def envelope_correlation_from_patterns(E1_theta, E1_phi, E2_theta, E2_phi, theta_deg, phi_deg):
@@ -1548,7 +1548,7 @@ def mean_effective_gain_mimo(gain_2d_list, theta_deg, phi_deg, xpr_db=6.0):
     return meg_list
 
 
-# ——— WEARABLE / MEDICAL DEVICE ANALYSIS ——————————————————————————
+# --- WEARABLE / MEDICAL DEVICE ANALYSIS --------------------------------------
 
 BODY_POSITIONS = {
     "wrist": {"axis": "+X", "cone_deg": 50, "tissue_cm": 2.0},
@@ -1636,7 +1636,7 @@ def dense_device_interference(
         num_devices: number of interfering devices
         tx_power_dbm: per-device transmit power (dBm)
         freq_mhz: frequency (MHz)
-        bandwidth_mhz: channel bandwidth (MHz) — for noise floor calc
+        bandwidth_mhz: channel bandwidth (MHz): for noise floor calc
         room_size_m: (length, width, height) in metres
 
     Returns:

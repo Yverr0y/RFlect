@@ -13,8 +13,8 @@ Total Radiated Power workflow for an active (transmitting) DUT.
 ## In the GUI
 
 1. Scan type: **Active**
-2. Set `Conducted Power (dBm)` — defaults to 4 dBm; this is the level at the DUT antenna input, not at the source
-3. Set `Cable Loss (dB)` if applicable — added back to measured power
+2. Set `Conducted Power (dBm)`: defaults to 4 dBm; this is the level at the DUT antenna input, not at the source
+3. Set `Cable Loss (dB)` if applicable: added back to measured power
 4. `Ctrl+O` and pick the active-TRP file
 5. Plots render: 2D azimuth/elevation cuts, 3D pattern with turbo colormap, datasheet-style summary
 
@@ -50,11 +50,11 @@ This runs `batch_process_active_scans` over the folder and (optionally) generate
 ## Common gotchas
 
 - **Conducted power matters**. Efficiency is wrong if you enter the source-side power instead of the DUT-side power.
-- **Cable loss is positive**. Loss is what the signal loses between DUT and receiver — add it back to compensate.
-- **TRP at a single frequency only** — if you need TRP vs frequency, use multiple active scans.
+- **Cable loss is positive**. Loss is what the signal loses between DUT and receiver: add it back to compensate.
+- **TRP at a single frequency only**. If you need TRP vs frequency, use multiple active scans.
 
 ## See also
 
 - [Concepts → TRP](../getting-started/concepts.md#trp-total-radiated-power)
 - [Maritime / Horizon plots](maritime-horizon.md)
-- [Cal Drift](cal-drift.md) — track active-cal stability over time
+- [Cal Drift](cal-drift.md): track active-cal stability over time

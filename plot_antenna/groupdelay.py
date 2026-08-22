@@ -8,7 +8,7 @@ import matplotlib
 try:
     matplotlib.use("TkAgg")
 except ImportError:
-    # No display available (e.g. headless CI test collection) — fall back
+    # No display available (e.g. headless CI test collection): fall back
     # to a non-interactive backend instead of crashing on import.
     matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -34,7 +34,7 @@ def compute_group_delay_dispersion(data_dict, min_freq=None, max_freq=None):
     Returns:
         dict with numpy arrays, all aligned by ``freq_hz``:
             freq_hz, max_minus_min_s, variance_s2, std_s, distance_error_m.
-        Empty arrays if no usable data. Pure function — no plotting, no IO.
+        Empty arrays if no usable data. Pure function. No plotting, no IO.
     """
     if not data_dict:
         empty = np.array([])
@@ -289,8 +289,8 @@ def plot_total_system_fidelity(data_dict, min_freq=None, max_freq=None):
 
     Parameters:
         data_dict: dict mapping theta labels to DataFrames.
-        min_freq: float, optional — minimum frequency in GHz.
-        max_freq: float, optional — maximum frequency in GHz.
+        min_freq: float, optional: minimum frequency in GHz.
+        max_freq: float, optional: maximum frequency in GHz.
     """
     angle_data = []
     last_sff_result = None

@@ -23,7 +23,7 @@ import matplotlib
 try:
     matplotlib.use("TkAgg")
 except ImportError:
-    # No display available (e.g. headless CI test collection) — fall back
+    # No display available (e.g. headless CI test collection): fall back
     # to a non-interactive backend instead of crashing on import.
     matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -568,7 +568,7 @@ class AntennaPlotGUI(DialogsMixin, ToolsMixin, CallbacksMixin):  # type: ignore[
         )
         self.btn_settings.pack(side=tk.RIGHT, padx=(WIDGET_GAP, 0))
 
-        # 3D plotting settings — per plot type
+        # 3D plotting settings: per plot type
         self.axis_scale_mode_total = tk.StringVar(value="auto")
         self.axis_min_total = tk.DoubleVar(value=-20.0)
         self.axis_max_total = tk.DoubleVar(value=10.0)

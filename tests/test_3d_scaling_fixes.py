@@ -4,7 +4,7 @@ Covers:
   #1  save_to_results_folder feeds per-polarization power arrays into the
       active H-pol / V-pol 3D plots (was passing total power).
   #2  plot_passive_3d_component is robust to degenerate input (constant gain /
-      NaN) — no divide-by-zero / invalid-value / all-NaN warnings, mirroring the
+      NaN). No divide-by-zero / invalid-value / all-NaN warnings, mirroring the
       active route's guards.
   #3  _setup_3d_axes never collapses the bounding box to lim=0 / lim=NaN for a
       flat or all-NaN pattern.

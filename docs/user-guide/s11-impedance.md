@@ -36,11 +36,11 @@ Returns the same metrics as JSON. See [tools reference](../mcp/tools-reference.m
 
 ## Common gotchas
 
-- **Calibration matters**. RFlect doesn't apply VNA calibration — bring already-calibrated data.
+- **Calibration matters**. RFlect doesn't apply VNA calibration: bring already-calibrated data.
 - **Threshold convention**. -10 dB ≈ 90% power match. Some specs use -6 dB or -3 dB; set explicitly.
 - **Single-band assumption**. The bandwidth metric reports the widest contiguous matched band; multi-band antennas will need per-band analysis.
 
 ## See also
 
-- [Group Delay](group-delay.md) — derived from S21 phase
-- [UWB / SFF](uwb-sff.md) — full UWB channel characterization
+- [Group Delay](group-delay.md): derived from S21 phase
+- [UWB / SFF](uwb-sff.md): full UWB channel characterization

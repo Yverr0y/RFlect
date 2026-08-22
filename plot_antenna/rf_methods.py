@@ -1,7 +1,7 @@
 """
 Advanced RF analysis methods (v6.0).
 
-Pure, deterministic functions — no IO, no plotting, no LLM. Each has an analytic
+Pure, deterministic functions. No IO, no plotting, no LLM. Each has an analytic
 oracle covered by tests:
 
 - axial_ratio_from_hv         (#48) circular-polarization axial ratio / tilt / sense
@@ -23,7 +23,7 @@ C_M_PER_S = 299792458.0
 
 
 # ---------------------------------------------------------------------------
-# #48 — circular polarization axial ratio + 3-antenna absolute gain
+# #48: circular polarization axial ratio + 3-antenna absolute gain
 # ---------------------------------------------------------------------------
 
 
@@ -96,7 +96,7 @@ def three_antenna_gain(
 
 
 # ---------------------------------------------------------------------------
-# #46 — uniform linear array factor + steering + grating-lobe check
+# #46: uniform linear array factor + steering + grating-lobe check
 # ---------------------------------------------------------------------------
 
 
@@ -169,7 +169,7 @@ def array_factor_uniform(
 
 
 # ---------------------------------------------------------------------------
-# #47 — planar near-field -> far-field (2D FFT)
+# #47: planar near-field -> far-field (2D FFT)
 # ---------------------------------------------------------------------------
 
 
@@ -214,7 +214,7 @@ def planar_nf2ff(
 
 
 # ---------------------------------------------------------------------------
-# #43 — S-parameter time-gating + reference-plane de-embedding
+# #43: S-parameter time-gating + reference-plane de-embedding
 # ---------------------------------------------------------------------------
 
 
@@ -262,7 +262,7 @@ def port_extension_deembed(
 
 
 # ---------------------------------------------------------------------------
-# #42 — CTIA Total Isotropic Sensitivity
+# #42: CTIA Total Isotropic Sensitivity
 # ---------------------------------------------------------------------------
 
 

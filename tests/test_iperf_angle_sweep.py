@@ -284,7 +284,7 @@ def test_non_wifi_only_runs_are_ignored(analyze, tmp_path):
         "session_name": "inst",
         "created_utc": "x",
         "runs": [
-            # baseline kind — should be ignored entirely
+            # baseline kind: should be ignored entirely
             {"timestamp_utc": "x", "kind": "baseline",
              "wifi_channel": 6, "iperf_mode": "tcp_up", "angle_deg": 0.0,
              "aggregate": {"overall_mbps": 999.0}},
@@ -300,5 +300,5 @@ def test_non_wifi_only_runs_are_ignored(analyze, tmp_path):
     result = analyze(str(inst_dir), str(ref_dir), str(out_dir))
     with open(result["summary_json"]) as fh:
         data = json.load(fh)
-    # The baseline 999.0 must NOT contribute — installed mean should be 90, not 544.5.
+    # The baseline 999.0 must NOT contribute: installed mean should be 90, not 544.5.
     assert data["cells"][0]["mean_installed_mbps"] == pytest.approx(90.0)

@@ -1,4 +1,4 @@
-# Recipes — Standard Procedures
+# Recipes: Standard Procedures
 
 Standard RFlect procedures you can hand to Claude (or invoke programmatically). All driven by [`process_folder`](tools-reference.md#orchestration-1).
 
@@ -44,7 +44,7 @@ process_folder(
 
 What it does:
 - Picks up every `*.txt` containing `TRP` (excluding `TRP Cal *.txt`)
-- Runs `batch_process_active_scans` — TRP, H/V power, 2D/3D patterns, maritime stats
+- Runs `batch_process_active_scans`: TRP, H/V power, 2D/3D patterns, maritime stats
 - Generates a DOCX report
 
 ## Cal-Drift Sweep
@@ -100,7 +100,7 @@ Auto-detect priority: `cal_drift > passive > active > uwb`. Mixed folders procee
 }
 ```
 
-When something goes sideways (no match, missing folder, partial pair, per-file UWB failure, report write error) the call **does not raise** — warnings list the problems:
+When something goes sideways (no match, missing folder, partial pair, per-file UWB failure, report write error) the call **does not raise**: warnings list the problems:
 
 ```json
 {
@@ -128,7 +128,7 @@ The agent will translate these into `process_folder(...)` calls and follow up wi
 
 ## Agent-authored report narrative
 
-RFlect generates report prose **deterministically** by default — no LLM, no API key. Because the MCP client driving RFlect *is* an LLM, the higher-quality path is for the agent to read the computed analysis and author the narrative itself, then hand it to `generate_report`:
+RFlect generates report prose **deterministically** by default. No LLM, no API key. Because the MCP client driving RFlect *is* an LLM, the higher-quality path is for the agent to read the computed analysis and author the narrative itself, then hand it to `generate_report`:
 
 ```python
 # 1. Compute the facts (deterministic).

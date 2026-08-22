@@ -568,7 +568,7 @@ def _sort_images_by_frequency(img_paths: List[str]) -> List[str]:
 # ---------------------------------------------------------------------------
 
 
-# Shared formatting helper (#36) — single source of truth in plot_antenna.docx_helpers.
+# Shared formatting helper (#36): single source of truth in plot_antenna.docx_helpers.
 from plot_antenna.docx_helpers import fmt_value as _fmt
 
 
@@ -976,7 +976,7 @@ def _build_data_driven_conclusions(
 # ---------------------------------------------------------------------------
 
 
-# Shared header-styling helper (#36) — single source of truth in plot_antenna.docx_helpers.
+# Shared header-styling helper (#36): single source of truth in plot_antenna.docx_helpers.
 from plot_antenna.docx_helpers import style_header_row as _style_header_row
 
 

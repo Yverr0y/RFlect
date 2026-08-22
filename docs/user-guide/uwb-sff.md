@@ -1,6 +1,6 @@
 # UWB / SFF Analysis
 
-Ultra-Wideband antenna characterization. Gain alone doesn't capture pulse fidelity over wide bandwidths — you also need to know how well the antenna preserves pulse shape across angles.
+Ultra-Wideband antenna characterization. Gain alone doesn't capture pulse fidelity over wide bandwidths. You also need to know how well the antenna preserves pulse shape across angles.
 
 ## System Fidelity Factor (SFF)
 
@@ -62,11 +62,11 @@ Runs `analyze_uwb_channel` on every `.s2p` / matching `.csv` in the folder. See 
 
 IFFT of the transfer function gives the time-domain impulse response. `compute_impulse_response` reports:
 
-- `pulse_width_ps` — full-width-half-max of the main lobe
-- `ringing_dB` — secondary peaks relative to the main pulse
+- `pulse_width_ps`: full-width-half-max of the main lobe
+- `ringing_dB`: secondary peaks relative to the main pulse
 
 ## Common gotchas
 
-- **Frequency band filter** — UWB sweeps are wide. Use `min_freq_ghz` / `max_freq_ghz` to restrict the analysis to your standard's band (3.1–10.6 GHz for FCC UWB).
-- **Group delay column** — without `S21(s)`, RFlect falls back to magnitude-only SFF, which is less informative. Capture group delay if possible.
-- **Angle parsing** — `calculate_sff_from_files` extracts angle from filename via regex `(\d+)(deg|DEG)`. If filenames don't follow that pattern, angles default to 0°, 45°, 90°, … by file order.
+- **Frequency band filter**: UWB sweeps are wide. Use `min_freq_ghz` / `max_freq_ghz` to restrict the analysis to your standard's band (3.1–10.6 GHz for FCC UWB).
+- **Group delay column**: without `S21(s)`, RFlect falls back to magnitude-only SFF, which is less informative. Capture group delay if possible.
+- **Angle parsing**: `calculate_sff_from_files` extracts angle from filename via regex `(\d+)(deg|DEG)`. If filenames don't follow that pattern, angles default to 0°, 45°, 90°, … by file order.

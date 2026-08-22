@@ -1,6 +1,6 @@
 # Chambers
 
-RFlect is **chamber-vendor-agnostic** — it works with the file output, not the hardware. If your chamber exports a supported file format ([see File Formats](file-formats.md)), RFlect can read it.
+RFlect is **chamber-vendor-agnostic**. It works with the file output, not the hardware. If your chamber exports a supported file format ([see File Formats](file-formats.md)), RFlect can read it.
 
 ## Primary supported workflow
 
@@ -15,15 +15,15 @@ A chamber that produces, per measurement:
 - Polarization split (HPOL vs VPOL) for passive scans
 - A summary header with frequency, axis ranges, increments, and (for active) the conducted power level
 
-Most modern chambers can produce this format — either natively or via a post-processor.
+Most modern chambers can produce this format: either natively or via a post-processor.
 
 ## Filename conventions RFlect expects
 
 | Measurement       | Filename pattern (example)                                  |
 |-------------------|-------------------------------------------------------------|
-| Passive HPOL      | `PassiveTest_BLE AP_HPol.txt` — must contain `_HPol`        |
-| Passive VPOL      | `PassiveTest_BLE AP_VPol.txt` — must contain `_VPol`        |
-| Active TRP        | `Active Test_BLE TRP.txt` — must contain `TRP` (any case)    |
+| Passive HPOL      | `PassiveTest_BLE AP_HPol.txt`: must contain `_HPol`        |
+| Passive VPOL      | `PassiveTest_BLE AP_VPol.txt`: must contain `_VPol`        |
+| Active TRP        | `Active Test_BLE TRP.txt`: must contain `TRP` (any case)    |
 | TRP Calibration   | `TRP Cal <antenna> <band> <date>.txt`                       |
 | TRP Cal Summary   | `TRP Cal Summary <antenna> <band> <date>.txt`               |
 
@@ -37,7 +37,7 @@ If you have a different chamber and it exports the WTL format directly (or you c
 
 ## Active vs passive in the chamber
 
-- **Active** — DUT transmits at a known `conducted_power_dBm`. The chamber receiver records `H_Power_dBm` and `V_Power_dBm` per angle.
-- **Passive** — Chamber transmitter illuminates the DUT. Receiver measures co-pol and cross-pol gain. Two separate scans (HPOL and VPOL) — RFlect pairs them by filename.
+- **Active**: DUT transmits at a known `conducted_power_dBm`. The chamber receiver records `H_Power_dBm` and `V_Power_dBm` per angle.
+- **Passive**: Chamber transmitter illuminates the DUT. Receiver measures co-pol and cross-pol gain. Two separate scans (HPOL and VPOL): RFlect pairs them by filename.
 
 See [Active TRP](../user-guide/active-trp.md) and [Passive Gain](../user-guide/passive-gain.md) for the full workflow.

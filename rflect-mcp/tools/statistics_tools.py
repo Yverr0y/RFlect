@@ -2,7 +2,7 @@
 Statistical pattern-averaging MCP tool for RFlect (#32).
 
 Averages repeat measurements of the same radiation pattern and reports
-per-point spread / repeatability — the pattern-level complement to the
+per-point spread / repeatability. The pattern-level complement to the
 cal-drift framework. Pure (operates on supplied arrays); no LLM, no network.
 Returns a structured dict and never raises.
 """

@@ -68,7 +68,7 @@ class TestComputePartialTRP:
 
 
 class TestPlotStyleHelpers:
-    """#41 — shared plot style/save helpers."""
+    """#41: shared plot style/save helpers."""
 
     def test_colormap_registry(self):
         from plot_antenna.plotting import colormap_for

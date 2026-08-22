@@ -486,7 +486,7 @@ class TestSidelobeDetection:
         data = {"phi": angles, "theta": angles, "total_gain": gain}
         analyzer = AntennaAnalyzer(data, scan_type="passive", frequencies=[2400.0])
 
-        # Only one peak at the end — no sidelobes
+        # Only one peak at the end. No sidelobes
         assert analyzer._detect_sidelobes(angles, gain) == []
 
 

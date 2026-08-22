@@ -85,7 +85,7 @@ def register_comparison_tools(mcp):
         scan_types = {loaded[n].scan_type for n in names}
         if len(scan_types) > 1:
             result["warnings"].append(
-                f"mixed_scan_types: {sorted(scan_types)} — peak metric not comparable"
+                f"mixed_scan_types: {sorted(scan_types)}: peak metric not comparable"
             )
         scan_type = loaded[names[0]].scan_type
         result["metric"] = "peak_power" if scan_type == "active" else "peak_gain"
@@ -174,7 +174,7 @@ def register_comparison_tools(mcp):
 
         For each loaded measurement, reports the band Min/Max/Mean of the peak
         metric (peak gain dBi for passive, peak power/TRP dBm for active) plus
-        its spread. This is the n-antenna comparison table — import the
+        its spread. This is the n-antenna comparison table: import the
         measurements first.
 
         Args:

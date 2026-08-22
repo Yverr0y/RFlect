@@ -83,7 +83,7 @@ def cal_drift_report(
 
     Returns:
         On success: {"output_path": str, "format": str}. On failure:
-        {"error": str}. Never raises — failures are returned, not thrown,
+        {"error": str}. Never raises: failures are returned, not thrown,
         per the MCP tool contract.
     """
     fmt = format.lower().strip()
@@ -98,7 +98,7 @@ def cal_drift_report(
             cal_drift.export_pdf(result, output_path)
         else:  # png
             cal_drift.render_delta_plot(result, out_path=output_path)
-    except Exception as exc:  # noqa: BLE001 — MCP tools never raise to the client
+    except Exception as exc:  # noqa: BLE001: MCP tools never raise to the client
         return {"error": f"cal_drift_report failed: {exc}"}
     return {"output_path": output_path, "format": fmt}
 
@@ -125,7 +125,7 @@ def cal_drift_set_setup_group(run_id: str, setup_group: str) -> bool:
 
     The setup_group is free-text (e.g. "pre-2024-cable-change",
     "2026-v2-mount") and is flagged as mismatched on the consistency tab
-    whenever two runs in different groups are compared — a loud visual
+    whenever two runs in different groups are compared. A loud visual
     signal that the comparison may not be apples-to-apples.
 
     Args:

@@ -38,7 +38,7 @@ def register_calibration_tools(mcp):
         cal_drift_* tools to compare against prior calibrations).
 
         Note: the gain-standard reference is rotated 90 deg between polarizations,
-        so HPol/VPol angle headers legitimately differ — this routine accounts for
+        so HPol/VPol angle headers legitimately differ. This routine accounts for
         that (it does not require matching angle grids).
 
         Args:

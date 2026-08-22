@@ -24,7 +24,7 @@
 
 ---
 
-RFlect takes raw antenna measurement data and turns it into publication-ready 2D/3D radiation pattern plots, TRP calculations, polarization analysis, and efficiency metrics — all validated against IEEE-standard methods. Whether you're characterizing a BLE chip antenna or qualifying a cellular array, RFlect handles the heavy lifting so you can focus on the engineering.
+RFlect takes raw antenna measurement data and turns it into publication-ready 2D/3D radiation pattern plots, TRP calculations, polarization analysis, and efficiency metrics. All validated against IEEE-standard methods. Whether you're characterizing a BLE chip antenna or qualifying a cellular array, RFlect handles the heavy lifting so you can focus on the engineering.
 
 <p align="center">
   <img src="./assets/scan_type_selection.png" alt="RFlect Main Window" width="680">
@@ -32,21 +32,21 @@ RFlect takes raw antenna measurement data and turns it into publication-ready 2D
 
 ## New in v4.1
 
-- **Advanced RF analysis suite** — 5 new analysis modules: Link Budget/Range Estimation (Friis with protocol presets), Indoor Propagation (ITU-R P.1238/P.2040), Multipath Fading (Rayleigh/Rician CDF + Monte-Carlo), Enhanced MIMO (capacity curves, combining gain, MEG), and Wearable/Medical (body-worn patterns, dense device SINR, SAR screening).
-- **Professional 3D antenna plots** — DUT orientation triad (X=green, Y=red, Z=blue) matching the physical chamber marker, equal aspect ratio, box-edge labels that are never occluded, and consistent layout across all four 3D routines.
-- **Maritime/horizon antenna plots** — 5 plot types for on-water antenna analysis: Mercator heatmap, conical cuts, gain-over-azimuth, horizon statistics table, and 3D pattern with horizon band highlighting.
-- **Smart presets** — Protocol presets (BLE, WiFi, LoRa, Zigbee, LTE, NB-IoT) and environment presets (Office, Hospital, Industrial, etc.) auto-populate analysis parameters.
-- **Non-blocking update checker** — Startup update check runs in a background thread instead of blocking the GUI.
-- **448 tests** — Up from 346 in v4.0, with 55+ new tests for advanced analysis, maritime plots, and batch processing.
+- **Advanced RF analysis suite**: 5 new analysis modules: Link Budget/Range Estimation (Friis with protocol presets), Indoor Propagation (ITU-R P.1238/P.2040), Multipath Fading (Rayleigh/Rician CDF + Monte-Carlo), Enhanced MIMO (capacity curves, combining gain, MEG), and Wearable/Medical (body-worn patterns, dense device SINR, SAR screening).
+- **Professional 3D antenna plots**: DUT orientation triad (X=green, Y=red, Z=blue) matching the physical chamber marker, equal aspect ratio, box-edge labels that are never occluded, and consistent layout across all four 3D routines.
+- **Maritime/horizon antenna plots**: 5 plot types for on-water antenna analysis: Mercator heatmap, conical cuts, gain-over-azimuth, horizon statistics table, and 3D pattern with horizon band highlighting.
+- **Smart presets**: Protocol presets (BLE, WiFi, LoRa, Zigbee, LTE, NB-IoT) and environment presets (Office, Hospital, Industrial, etc.) auto-populate analysis parameters.
+- **Non-blocking update checker**: Startup update check runs in a background thread instead of blocking the GUI.
+- **448 tests**: Up from 346 in v4.0, with 55+ new tests for advanced analysis, maritime plots, and batch processing.
 
 ## New in v4.0
 
-Ground-up overhaul from v3.x — new GUI, new analysis engine, new integrations, and corrected RF math throughout.
+Ground-up overhaul from v3.x: new GUI, new analysis engine, new integrations, and corrected RF math throughout.
 
-- **UWB analysis** — System Fidelity Factor via cross-correlation, phase reconstruction from group delay, Touchstone .s2p support, transfer function extraction, and impulse response characterization.
-- **Modern dark GUI** — Complete visual redesign with dark ttk theme, color-coded log output, keyboard shortcuts (`Ctrl+R`/`F5`), and WCAG AA contrast compliance.
-- **Zero-dependency, deterministic** — No LLM, no API key, no subscription (the in-app AI was removed in v5.0.0). Every metric is computed and reproducible.
-- **MCP server with 41 tools** — Programmatic antenna analysis for Claude Code and other MCP clients, including comparison, S11/VSWR, group delay, link budget, MIMO diversity, active-cal, and UWB characterization. Cross-platform (Linux/macOS/Windows).
+- **UWB analysis**: System Fidelity Factor via cross-correlation, phase reconstruction from group delay, Touchstone .s2p support, transfer function extraction, and impulse response characterization.
+- **Modern dark GUI**: Complete visual redesign with dark ttk theme, color-coded log output, keyboard shortcuts (`Ctrl+R`/`F5`), and WCAG AA contrast compliance.
+- **Zero-dependency, deterministic**. No LLM, no API key, no subscription (the in-app AI was removed in v5.0.0). Every metric is computed and reproducible.
+- **MCP server with 41 tools**: Programmatic antenna analysis for Claude Code and other MCP clients, including comparison, S11/VSWR, group delay, link budget, MIMO diversity, active-cal, and UWB characterization. Cross-platform (Linux/macOS/Windows).
 
 See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the full changelog.
 
@@ -78,10 +78,10 @@ python run_rflect.py
 
 ## Usage
 
-1. **Select scan type** — Active, Passive, or VNA
-2. **Adjust settings** — cable loss, limit lines, frequency range, 3D scale
+1. **Select scan type**: Active, Passive, or VNA
+2. **Adjust settings**: cable loss, limit lines, frequency range, 3D scale
 3. **Import your files** via the Import button or `Ctrl+O`
-4. **View results** — plots render automatically; hit `Ctrl+R` to reprocess
+4. **View results**: plots render automatically; hit `Ctrl+R` to reprocess
 
 <p align="center">
   <img src="./assets/passive_settings.png" alt="Passive Settings Dialog" width="500">
@@ -92,20 +92,20 @@ python run_rflect.py
 
 ### Passive Measurements
 
-**G&D Comparison** — Efficiency, gain, and directivity across multiple scans:
+**G&D Comparison**: Efficiency, gain, and directivity across multiple scans:
 ![G&D Results](./assets/python_1d_results_g&d.png)
 
-**HPOL/VPOL 1D** — Efficiency and total gain vs frequency:
+**HPOL/VPOL 1D**: Efficiency and total gain vs frequency:
 ![Passive 1D](./assets/python_1d_results.png)
 
-**2D Azimuth Cuts** — Gain pattern across theta angles:
+**2D Azimuth Cuts**: Gain pattern across theta angles:
 ![Passive 2D](./assets/python_passive_2d_results_azimuth.png)
 
-**Datasheet Plots** — Peak gain per polarization, polar cuts at key planes:
+**Datasheet Plots**: Peak gain per polarization, polar cuts at key planes:
 ![Datasheet 1D](./assets/python_1d_results_datasheet.png)
 ![Datasheet 2D](./assets/python_2d_results_datasheet.png)
 
-**3D Radiation Patterns** — Total gain with turbo colormap:
+**3D Radiation Patterns**: Total gain with turbo colormap:
 ![Passive 3D](./assets/python_passive_3d_results.png)
 
 ### Active TRP Measurements
@@ -124,20 +124,20 @@ python run_rflect.py
 
 ## Key Features
 
-- **Polarization Analysis** — Axial ratio, tilt angle, XPD, and polarization sense (LHCP/RHCP) from HPOL/VPOL data with interactive and batch export modes
-- **Batch Processing** — Process an entire folder of HPOL/VPOL pairs or TRP files automatically, with organized per-pair output
-- **Report Generation** — Export DOCX reports with embedded plots, measurement summaries, and deterministic data-driven prose (or narrative authored by the driving MCP agent)
-- **3D Visualization** — Perceptually uniform turbo colormap, transparent panes, coordinate axes, and manual or auto Z-axis scaling
+- **Polarization Analysis**: Axial ratio, tilt angle, XPD, and polarization sense (LHCP/RHCP) from HPOL/VPOL data with interactive and batch export modes
+- **Batch Processing**: Process an entire folder of HPOL/VPOL pairs or TRP files automatically, with organized per-pair output
+- **Report Generation**: Export DOCX reports with embedded plots, measurement summaries, and deterministic data-driven prose (or narrative authored by the driving MCP agent)
+- **3D Visualization**: Perceptually uniform turbo colormap, transparent panes, coordinate axes, and manual or auto Z-axis scaling
 
 ## Zero-dependency, MCP-driven (v5.0.0)
 
-RFlect makes **no outbound LLM/API calls and needs no API key or subscription.** It is a deterministic RF analysis + rendering toolkit. When driven over MCP, the AI agent *is* the LLM: it calls RFlect's tools for data and — if a report needs narrative prose — authors it itself and passes it to `generate_report`. Everything RFlect computes is reproducible, not generated.
+RFlect makes **no outbound LLM/API calls and needs no API key or subscription.** It is a deterministic RF analysis + rendering toolkit. When driven over MCP, the AI agent *is* the LLM: it calls RFlect's tools for data and. If a report needs narrative prose: authors it itself and passes it to `generate_report`. Everything RFlect computes is reproducible, not generated.
 
 See [MCP_STATUS.md](MCP_STATUS.md) for the full tool inventory.
 
 ## MCP Server
 
-RFlect ships with an [MCP](https://modelcontextprotocol.io/) server — 41 tools that let an AI agent like Claude Code import your measurements, run analysis, compare antennas, estimate link budgets, generate reports, and perform UWB/MIMO characterization programmatically. No GUI required.
+RFlect ships with an [MCP](https://modelcontextprotocol.io/) server: 41 tools that let an AI agent like Claude Code import your measurements, run analysis, compare antennas, estimate link budgets, generate reports, and perform UWB/MIMO characterization programmatically. No GUI required.
 
 See [rflect-mcp/README.md](rflect-mcp/README.md) for setup and the full tool reference.
 
@@ -174,4 +174,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for coding standards, architecture detail
 
 [AGPL-3.0-or-later](LICENSE)
 
-Relicensed from GPL-3.0 to AGPL-3.0-or-later to match the rest of the RF/EMC engineering toolkit's licensing policy — see [eng-mcp-suite's licensing summary](https://github.com/RFingAdam/eng-mcp-suite/blob/main/LICENSE_SUMMARY.md) for the rationale.
+Relicensed from GPL-3.0 to AGPL-3.0-or-later to match the rest of the RF/EMC engineering toolkit's licensing policy. See [eng-mcp-suite's licensing summary](https://github.com/RFingAdam/eng-mcp-suite/blob/main/LICENSE_SUMMARY.md) for the rationale.

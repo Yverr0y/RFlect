@@ -1,4 +1,4 @@
-"""Tests for plot_antenna.uwb_plotting (issue #14) — pure helper + plot smoke."""
+"""Tests for plot_antenna.uwb_plotting (issue #14): pure helper + plot smoke."""
 
 from __future__ import annotations
 

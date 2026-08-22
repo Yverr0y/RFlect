@@ -8,8 +8,8 @@ Grab the latest release from [GitHub Releases](https://github.com/RFingAdam/RFle
 
 === "Windows"
 
-    - `RFlect_Installer_vX.X.X.exe` — Inno Setup installer (registers app, creates shortcuts)
-    - `RFlect_vX.X.X.exe` — standalone portable binary
+    - `RFlect_Installer_vX.X.X.exe`: Inno Setup installer (registers app, creates shortcuts)
+    - `RFlect_vX.X.X.exe`: standalone portable binary
 
 === "Linux"
 
@@ -20,7 +20,7 @@ Grab the latest release from [GitHub Releases](https://github.com/RFingAdam/RFle
 
 === "macOS"
 
-    Build from source — pre-built macOS binaries are not yet published.
+    Build from source: pre-built macOS binaries are not yet published.
 
 ## From source
 
@@ -57,7 +57,7 @@ cd rflect-mcp
 pip install -r requirements.txt
 ```
 
-Configuration lives in your MCP client — see [MCP installation](../mcp/installation.md).
+Configuration lives in your MCP client. See [MCP installation](../mcp/installation.md).
 
 ## Sanity check
 

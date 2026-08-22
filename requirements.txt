@@ -1,4 +1,4 @@
-# RFlect runtime dependencies (deterministic core — no LLM/API key needed).
+# RFlect runtime dependencies (deterministic core. No LLM/API key needed).
 # Optional extras live in pyproject.toml: [ai] (openai/anthropic/ollama),
 # [dev] (pytest/black/flake8/mypy), [exe] (pyinstaller).
 

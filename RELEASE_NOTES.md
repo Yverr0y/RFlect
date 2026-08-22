@@ -4,21 +4,21 @@
 
 **3D-rendering correctness/robustness fixes, plus a packaging fix for AV/EDR (e.g. Cylance) false-positive blocks on the Windows installer.**
 
-### Fixed — 3D rendering
+### Fixed: 3D rendering
 - **Active 3D saves now use per-polarization data.** `save_to_results_folder` was passing the total-power arrays into both the H-pol and V-pol active 3D plot calls, so the saved `3D_TRP_hpol` / `3D_TRP_vpol` images rendered the total-power pattern under a polarization label. They now receive `h_power_dBm_2d` / `v_power_dBm_2d`, matching the already-correct GUI display path.
 - **Passive 3D rendering hardened against degenerate input.** A NaN-containing or constant-gain (`max == min`) interpolated pattern no longer NaN-poisons / divides-by-zero into a blank surface; NaN-robust min/max plus a zero-radius fallback now mirror the active route's guards.
 - **3D axis setup guards degenerate extents.** `_setup_3d_axes` no longer lets a flat (extent 0) or all-NaN pattern collapse the bounding box to `lim=0` / `lim=NaN`, which previously blanked the axes; it now falls back to a unit box.
-- The shared 3D scaling machinery (equal symmetric axis limits + `set_box_aspect([1,1,1])`) was verified to render true proportions — a sphere renders as a sphere in both the passive and active routes.
+- The shared 3D scaling machinery (equal symmetric axis limits + `set_box_aspect([1,1,1])`) was verified to render true proportions. A sphere renders as a sphere in both the passive and active routes.
 
 ### Changed
 - `process_data` (the 3D render helper) now returns only the interpolated grid and its axes; the dead Cartesian `X/Y/Z` + `db_to_linear` radius it used to also build (discarded by every caller) are gone.
-- Removed dead code in `plot_passive_3d_component`: the unused `gain_normalized` local and the vestigial `shadowing_enabled` / `shadow_direction` parameters (human-shadow fading is applied to the gain data upstream; these parameters had no effect inside the plot function — the shadow-cone overlay was never wired up).
+- Removed dead code in `plot_passive_3d_component`: the unused `gain_normalized` local and the vestigial `shadowing_enabled` / `shadow_direction` parameters (human-shadow fading is applied to the gain data upstream; these parameters had no effect inside the plot function. The shadow-cone overlay was never wired up).
 
-### Packaging — Windows AV/EDR false-positive fix
-RFlect's Windows executable was regularly getting blocked by endpoint-security tools (Cylance/BlackBerry Protect and similar) on install. Root cause: a textbook PyInstaller false-positive pattern — a UPX-compressed onefile build with no embedded PE version metadata and no code signing.
+### Packaging: Windows AV/EDR false-positive fix
+RFlect's Windows executable was regularly getting blocked by endpoint-security tools (Cylance/BlackBerry Protect and similar) on install. Root cause: a textbook PyInstaller false-positive pattern. A UPX-compressed onefile build with no embedded PE version metadata and no code signing.
 
 - **Disabled UPX compression** (`upx=False` in `RFlect.spec`). UPX packing is one of the most common AV/EDR heuristic triggers, since malware also uses it to defeat static scanning.
-- **Added a PE VERSIONINFO resource** (`version_info.txt`), embedding CompanyName/ProductName/FileVersion/LegalCopyright metadata into the exe — previously entirely absent. Windows-only; verified as a documented no-op on the Linux build (PyInstaller clears it with a log warning when not on Windows).
+- **Added a PE VERSIONINFO resource** (`version_info.txt`), embedding CompanyName/ProductName/FileVersion/LegalCopyright metadata into the exe: previously entirely absent. Windows-only; verified as a documented no-op on the Linux build (PyInstaller clears it with a log warning when not on Windows).
 - Dropped a stale `anthropic` hidden-import left over from the AI/LLM stack removed in an earlier release.
 - **Not included in this release**: code signing (an Authenticode certificate so IT can allow-list RFlect by publisher/certificate instead of by per-build file hash, which is the more durable fix). Tracked as follow-up work.
 
@@ -27,7 +27,7 @@ RFlect's Windows executable was regularly getting blocked by endpoint-security t
 
 ## Version 5.0.0 (05/28/2026)
 
-**Major release — zero-dependency, MCP-first relaunch.**
+**Major release: zero-dependency, MCP-first relaunch.**
 
 RFlect no longer makes any outbound LLM/API calls and needs **no API key and no subscription.** It is now a fully deterministic RF analysis + rendering toolkit. When driven over MCP, the AI agent *is* the LLM: it calls RFlect's tools for computed data and authors any report narrative itself. Every value RFlect produces is reproducible.
 
@@ -35,19 +35,19 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 - **Removed the entire in-app AI/LLM stack**: the GUI AI chat assistant, GUI AI-report generation, the multi-provider LLM abstraction (`plot_antenna/llm_provider.py`), and the encrypted API-key store (`plot_antenna/api_keys.py`).
 - **`generate_report` no longer accepts `ai_*` options or calls any LLM.** Report prose is deterministic and data-driven by default.
-- **`plot_antenna/ai_analysis.py` renamed to `plot_antenna/analysis_engine.py`** (it was always pure NumPy compute — the old name was a misnomer). `AntennaAnalyzer` is unchanged and still backs every MCP analysis tool.
+- **`plot_antenna/ai_analysis.py` renamed to `plot_antenna/analysis_engine.py`** (it was always pure NumPy compute. The old name was a misnomer). `AntennaAnalyzer` is unchanged and still backs every MCP analysis tool.
 - Removed the `AI_*` keys from the config template and the `ai_*` flags from report templates.
 
 ### New features
 
 - **Agent-authored report narrative.** `generate_report` gained an optional `narrative` dict so the driving MCP agent can supply `executive_summary`, `section_analysis` (per measurement), `recommendations`, and per-figure `captions`. Any omitted key falls back to the deterministic text.
 - **6 new MCP tools** (MCP count 35 → 41, 9 categories):
-  - `compare_antennas` — cross-measurement overlay: per-frequency peak gain/TRP, deltas vs a reference, best-per-frequency, optional CSV.
-  - `analyze_s11` — return loss / impedance bandwidth / VSWR / resonance from an S11 sweep.
-  - `analyze_group_delay` — group delay + in-band flatness from a transmission-phase sweep.
-  - `estimate_link_budget` — max range + link margin via Friis / log-distance / ITU-indoor, with optional Rayleigh/Rician fade margin.
-  - `analyze_mimo_diversity` — ECC → Vaughan-Andersen diversity gain + 2×2 capacity + isolation rating.
-  - `generate_active_cal` — scriptable active chamber cal-file generation (records into cal-drift history).
+  - `compare_antennas`: cross-measurement overlay: per-frequency peak gain/TRP, deltas vs a reference, best-per-frequency, optional CSV.
+  - `analyze_s11`: return loss / impedance bandwidth / VSWR / resonance from an S11 sweep.
+  - `analyze_group_delay`: group delay + in-band flatness from a transmission-phase sweep.
+  - `estimate_link_budget`: max range + link margin via Friis / log-distance / ITU-indoor, with optional Rayleigh/Rician fade margin.
+  - `analyze_mimo_diversity`: ECC → Vaughan-Andersen diversity gain + 2×2 capacity + isolation rating.
+  - `generate_active_cal`: scriptable active chamber cal-file generation (records into cal-drift history).
 - All new tools reuse RFlect's existing tested math (`calculations.py`, `uwb_analysis.py`, `analysis_engine.py`, `file_utils.py`); none reimplement it. Each returns a structured dict and never raises.
 
 ### Documentation
@@ -69,16 +69,16 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ## Version 4.3.0 (05/28/2026)
 
-**Feature release — multi-angle throughput-validation MCP tool.**
+**Feature release: multi-angle throughput-validation MCP tool.**
 
 ### New Features
 
-- **`analyze_iperf_angle_sweep` MCP tool**: compares two bench iperf sessions — an installed-antenna session and a matched reference-antenna session recorded at the same azimuth angles — to quantify how the installed antenna's real-environment throughput tracks a reference across the radiation pattern.
+- **`analyze_iperf_angle_sweep` MCP tool**: compares two bench iperf sessions. An installed-antenna session and a matched reference-antenna session recorded at the same azimuth angles: to quantify how the installed antenna's real-environment throughput tracks a reference across the radiation pattern.
   - Signature: `analyze_iperf_angle_sweep(session_dir, reference_session_dir, out_dir, mean_threshold_mbps=-5.0, worst_threshold_mbps=-10.0)`.
   - For each `(channel, mode)` cell, computes per-angle deltas (installed − reference) and a roll-up: mean, median, worst-angle, best-angle, spread, and p10/p90.
   - Emits `summary.csv`, `summary.json`, a polar PNG per cell, and a markdown `report.md` with a configurable adequacy verdict per cell.
   - Reads only the documented bench `session.json` shape (`wifi_only` runs carrying `angle_deg` + `aggregate.overall_mbps`); no dependency on any specific bench harness.
-  - Never raises — every failure mode (missing manifest, malformed runs, no common channel/mode cells, no common angles, write errors) returns as a structured `warnings[]` entry.
+  - Never raises. Every failure mode (missing manifest, malformed runs, no common channel/mode cells, no common angles, write errors) returns as a structured `warnings[]` entry.
 
 ### Internals
 
@@ -93,14 +93,14 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ## Version 4.2.0 (05/12/2026)
 
-**Feature release — single-call folder orchestration for MCP clients.**
+**Feature release: single-call folder orchestration for MCP clients.**
 
 ### New Features
 
 - **`process_folder` MCP tool**: one entry point that scans a directory, picks the right workflow (passive HPOL/VPOL pair, active TRP, cal-drift archive, or UWB S-parameter sweep), runs it, and optionally generates a DOCX report. Replaces the previous "list → bulk → analyze → report" chain that Claude / Cline / other MCP clients had to script manually.
   - Signature: `process_folder(folder_path, intent='auto', report=False, freqs=None, report_path=None)`.
   - Auto-detect priority: `cal_drift > passive > active > uwb`. Mixed folders proceed with the winner and surface a `mixed_intents_detected` warning.
-  - Never raises — all failure modes (missing folder, no matching files, partial pairs, per-file UWB failures, report write errors) return as structured `warnings[]` entries so the caller can decide how to react.
+  - Never raises. All failure modes (missing folder, no matching files, partial pairs, per-file UWB failures, report write errors) return as structured `warnings[]` entries so the caller can decide how to react.
 
 ### Internals
 
@@ -115,7 +115,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ## Version 4.1.9 (04/14/2026)
 
-**Patch release — restores the Active Chamber Calibration routine.**
+**Patch release: restores the Active Chamber Calibration routine.**
 
 ### Bug Fixes
 
@@ -125,7 +125,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 - **`check_matching_files` gains a `strict_angles` parameter** (default `True`, preserving all passive-scan callers). Active Chamber Calibration passes `strict_angles=False` to allow the H/V angle offset inherent to the measurement.
 - **`generate_active_cal_file` now returns a result dict** with output paths and row counts so the GUI can surface meaningful feedback.
-- **Clearer GUI feedback in the active-cal flow**: the premature "…Created Successfully" log that fired before the user clicked *Generate Calibration File* is replaced with `Reference files validated — click 'Generate Calibration File' to produce the output.`; the generate button now logs the output path, number of frequencies written, and how many frequencies were missing (e.g., outside the gain-standard's calibrated bands). Exceptions during generation are caught and logged instead of being silently swallowed by Tk.
+- **Clearer GUI feedback in the active-cal flow**: the premature "…Created Successfully" log that fired before the user clicked *Generate Calibration File* is replaced with `Reference files validated: click 'Generate Calibration File' to produce the output.`; the generate button now logs the output path, number of frequencies written, and how many frequencies were missing (e.g., outside the gain-standard's calibrated bands). Exceptions during generation are caught and logged instead of being silently swallowed by Tk.
 
 ### Verification
 
@@ -140,7 +140,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ## Version 4.1.8 (03/10/2026)
 
-**Patch release — maritime metrics, conducted power CSV, and table layout improvements.**
+**Patch release: maritime metrics, conducted power CSV, and table layout improvements.**
 
 ### New Features
 
@@ -157,7 +157,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ## Version 4.1.7 (03/05/2026)
 
-**Patch release — improved horizon efficiency metric.**
+**Patch release: improved horizon efficiency metric.**
 
 ### Improvements
 
@@ -167,7 +167,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ## Version 4.1.6 (03/04/2026)
 
-**Feature release — per-plot-type 3D colorbar scaling.**
+**Feature release: per-plot-type 3D colorbar scaling.**
 
 ### New Features
 
@@ -187,7 +187,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ## Version 4.1.5 (02/24/2026)
 
-**Feature release — advanced RF analysis suite with 5 new analysis modules.**
+**Feature release: advanced RF analysis suite with 5 new analysis modules.**
 
 ### New Features: Advanced Antenna Analysis
 
@@ -207,9 +207,9 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 - **Professional 3D antenna pattern plots**: Shared `_setup_3d_axes()` helper across all 3D routines (active TRP, passive gain, masked horizon) with equal aspect ratio, symmetric limits, and transparent grid panes
 - **DUT orientation triad**: XYZ arrow tripod anchored at the corner of the bounding box (X=green, Y=red, Z=blue) matches the physical orientation marker used in the anechoic chamber, enabling correlation between 3D plots and measured antenna position from any view angle
-- **3D plot layout**: Tighter figure layout with `fig.suptitle()`, improved colorbar positioning, and max EIRP/gain annotation on the colorbar — consistent across all four 3D routines (active, passive, polarization, masked)
+- **3D plot layout**: Tighter figure layout with `fig.suptitle()`, improved colorbar positioning, and max EIRP/gain annotation on the colorbar: consistent across all four 3D routines (active, passive, polarization, masked)
 - **Bulk processing failure reporting**: Per-job/per-file outcome tracking replaces blanket success-on-partial-failure messages
-- **Non-blocking update checker**: Startup update check runs in a background thread — no more GUI freezes on slow networks
+- **Non-blocking update checker**: Startup update check runs in a background thread. No more GUI freezes on slow networks
 - **Matplotlib deprecation cleanup**: Replaced all deprecated `plt.get_cmap()` / `cm.get_cmap()` calls with `matplotlib.colormaps.get_cmap()` for forward compatibility
 - **Code cleanup**: Removed unused imports (`patheffects`), dead utility functions in `ai_analysis.py`, stale TODO comments, and unused variables
 
@@ -232,12 +232,12 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ## Version 4.1.4 (02/11/2026)
 
-**Feature release — horizon band TRP, efficiency calculations, and enhanced maritime statistics.**
+**Feature release: horizon band TRP, efficiency calculations, and enhanced maritime statistics.**
 
 ### New Features
 - **Horizon TRP**: Integrated radiated power over the horizon band (the "donut" between theta min/max), computed using sin(θ)-weighted numerical integration
 - **Full Sphere TRP**: Total radiated power integrated over the entire measurement sphere for reference
-- **Horizon Efficiency**: Percentage of total radiated power concentrated in the horizon band — the key figure of merit for maritime antennas
+- **Horizon Efficiency**: Percentage of total radiated power concentrated in the horizon band. The key figure of merit for maritime antennas
 - **3D pattern statistics**: The 3D masked horizon plot now includes an annotation box with max/min/avg, horizon TRP, full TRP, and efficiency
 
 ### Improvements
@@ -249,7 +249,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ## Version 4.1.3 (02/10/2026)
 
-**Patch release — coverage threshold and horizon statistics fixes.**
+**Patch release: coverage threshold and horizon statistics fixes.**
 
 ### Bug Fixes
 - **Coverage threshold reference line**: The -3 dB reference line in conical cuts and GOA plots was hardcoded at `y=-3` on the Y-axis (meaningless for active dBm data). Now drawn relative to peak using the coverage threshold setting, and legend shows the absolute value (e.g., "-3 dB ref (17.5 dBm)")
@@ -261,7 +261,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ## Version 4.1.2 (02/10/2026)
 
-**Patch release — maritime plot title corrections.**
+**Patch release: maritime plot title corrections.**
 
 ### Improvements
 - **Maritime plot titles**: All maritime plot titles now dynamically show "Gain (dBi)" for passive or "Power (dBm)" for active measurements instead of hardcoded "Gain"
@@ -277,7 +277,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 **Patch release with 8 bug fixes for v4.1.0.**
 
 ### Bug Fixes
-- **Settings dialog crash**: Added missing `SECTION_HEADER_FONT` import in dialogs_mixin — the maritime settings section crashed the entire settings dialog
+- **Settings dialog crash**: Added missing `SECTION_HEADER_FONT` import in dialogs_mixin. The maritime settings section crashed the entire settings dialog
 - **HPOL/VPOL file matching**: Replaced brittle `[:-4]` filename slice with regex that correctly strips `AP_HPol`/`AP_VPol` suffixes
 - **Matplotlib mainloop conflict**: Added `plt.ion()` to prevent "main thread is not in main loop" errors during passive processing
 - **Batch processing warnings**: Suppressed noisy "GUI outside main thread" and "Tight layout not applied" warnings during bulk runs
@@ -307,7 +307,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 
 ### Windows Installer Overhaul
 - **App icon**: Smith chart icon on exe, Start Menu shortcuts, desktop shortcut, installer wizard, and uninstall entry
-- **No console window**: Fixed `console=True` in PyInstaller spec — GUI-only with `runw.exe` bootloader
+- **No console window**: Fixed `console=True` in PyInstaller spec: GUI-only with `runw.exe` bootloader
 - **Upgrade handling**: `UsePreviousAppDir=yes` for seamless in-place upgrades; `[InstallDelete]` cleans up old `RFlect_v*.exe` from pre-v4 installs
 - **Release notes**: Shown after install via `InfoAfterFile`
 - **Uninstall cleanup**: Removes settings.json and assets directory
@@ -400,14 +400,14 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 - **System Fidelity Factor (SFF)**: Cross-correlation-based `SFF = max_τ |⟨s(t), r(t-τ)⟩| / (‖s‖·‖r‖)` with quality thresholds (Excellent/Very Good/Good/Fair/Poor)
 - **Phase reconstruction**: `φ(f) = φ₀ - 2π∫τ_g(f')df'` from group delay via cumulative trapezoidal integration
 - **Complex S21 from S2VNA data**: Reconstruct phase from S21(s) group delay + S21(dB) magnitude
-- **UWB pulse library**: Gaussian monocycle, modulated Gaussian, 5th derivative Gaussian — auto-centered on measurement band
+- **UWB pulse library**: Gaussian monocycle, modulated Gaussian, 5th derivative Gaussian: auto-centered on measurement band
 - **Transfer function extraction**: Free-space channel removal `H(f) = S21·(4πfd/c)·exp(j2πfd/c)`
 - **Impulse response**: IFFT with Blackman window, pulse width and ringing metrics
 - **S11/VSWR analysis**: Impedance bandwidth, fractional bandwidth, VSWR conversion
 - **Multi-angle SFF**: SFF vs orientation with mean across all angles
 - **Touchstone .s2p support**: Manual parser (no scikit-rf dependency) for RI/MA/DB formats and Hz/kHz/MHz/GHz units
 - **UWB plots**: SFF vs angle, group delay, impulse response, transfer function, input/output pulse overlay, S11/VSWR, group delay variation
-- Fixed broken `calculate_SFF_with_gaussian_pulse()` — was using magnitude-only IFFT, now uses proper phase-reconstructed complex S21 + cross-correlation
+- Fixed broken `calculate_SFF_with_gaussian_pulse()`: was using magnitude-only IFFT, now uses proper phase-reconstructed complex S21 + cross-correlation
 
 ### MCP Server (23 Tools)
 - FastMCP-based server for Claude Code, Cline, and other AI assistants
@@ -452,7 +452,7 @@ RFlect no longer makes any outbound LLM/API calls and needs **no API key and no 
 - File parser IndexError protection for malformed TRP headers
 
 ### Migration Notes
-- No user action required — update via installer
+- No user action required: update via installer
 - Developers: Run `pip install -r requirements.txt` to update dependencies
 - API key storage location unchanged (AppData/RFlect)
 - All existing measurement files remain compatible

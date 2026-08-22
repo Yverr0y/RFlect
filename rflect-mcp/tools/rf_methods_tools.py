@@ -167,7 +167,7 @@ def register_rf_methods_tools(mcp):
         """Generate a CTIA-style OTA TRP/TIS test-plan template.
 
         Returns a structured measurement plan: the theta/phi grid, the channels
-        to test for the band, and the partial-sphere definitions — a starting
+        to test for the band, and the partial-sphere definitions. A starting
         scaffold for a CTIA-aligned campaign (verify against the current CTIA
         test plan revision for certification).
 
@@ -206,7 +206,7 @@ def register_rf_methods_tools(mcp):
                 else "TIS (dBm) sphere harmonic-mean of EIS"
             ),
             "warnings": [
-                "scaffold only — confirm grid, channels, and pass/fail vs the "
+                "scaffold only: confirm grid, channels, and pass/fail vs the "
                 "current CTIA OTA test-plan revision for certification"
             ],
         }

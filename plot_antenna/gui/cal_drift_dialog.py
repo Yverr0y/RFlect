@@ -111,7 +111,7 @@ class CalDriftDialog:
         frame = ttk.Frame(parent)
         parent.add(frame, weight=1)
 
-        self.sel_var = tk.StringVar(value="Baseline: —   Current: —")
+        self.sel_var = tk.StringVar(value="Baseline::   Current: —")
         ttk.Label(frame, textvariable=self.sel_var).pack(anchor="w", padx=4, pady=4)
 
         self.notebook = ttk.Notebook(frame)
@@ -269,7 +269,7 @@ class CalDriftDialog:
         new_group = simpledialog.askstring(
             "Edit setup group",
             f"Setup group for run {run_id}\n"
-            "(free text; used to flag cross-epoch comparisons — leave blank for default):",
+            "(free text; used to flag cross-epoch comparisons. Leave blank for default):",
             initialvalue=meta.setup_group,
             parent=self.top,
         )

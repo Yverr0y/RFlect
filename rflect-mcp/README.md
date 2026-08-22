@@ -5,7 +5,7 @@ Context Protocol (MCP).
 
 Enables Claude Code, Cline, and other MCP clients to programmatically analyze
 antenna measurements and generate reports. **No LLM, no API key, no
-subscription** — RFlect computes the data and renders the output; the driving
+subscription**: RFlect computes the data and renders the output; the driving
 agent is the LLM and supplies any report narrative.
 
 Runs identically on **Linux, macOS, and Windows**. See the
@@ -153,7 +153,7 @@ for every tool, including `compare_antennas`, `analyze_s11`,
 
 **Supported formats**: S2VNA CSV files (with S21(dB) + S21(s) group delay columns) and Touchstone .s2p files.
 
-**Typical usage**: Characterize UWB antenna performance — SFF indicates how well the antenna preserves pulse shape.
+**Typical usage**: Characterize UWB antenna performance: SFF indicates how well the antenna preserves pulse shape.
 
 ## Quick-Start Workflow
 
@@ -267,7 +267,7 @@ generate_report("full_report.docx", {
 
 Report prose is **deterministic and data-driven** by default. There is no
 `ai_*` option and no API key. To supply your own narrative, pass a `narrative`
-dict as the fourth argument — RFlect renders it verbatim and falls back to the
+dict as the fourth argument: RFlect renders it verbatim and falls back to the
 data-driven text for any omitted key:
 
 ```python
@@ -328,7 +328,7 @@ Generated 5 reports:
 
 ### Report prose looks generic
 
-RFlect generates report prose **deterministically** — there is no LLM and no API
+RFlect generates report prose **deterministically**. There is no LLM and no API
 key (removed in v5.0.0). For richer narrative, author it in your agent and pass
 it via the `narrative` parameter to `generate_report` (see "Report narrative"
 above).

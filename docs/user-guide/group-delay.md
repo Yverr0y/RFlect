@@ -34,9 +34,9 @@ Full UWB analysis (group delay + SFF + transfer function + impulse response):
 analyze_uwb_channel("/path/to/cap.s2p", distance_m=1.0)
 ```
 
-Just group delay is derived inside `analyze_uwb_channel` — there isn't a dedicated MCP tool for group delay alone because it's almost always wanted alongside the other UWB metrics. Use the full analysis and pluck `result["group_delay"]`.
+Just group delay is derived inside `analyze_uwb_channel`. There isn't a dedicated MCP tool for group delay alone because it's almost always wanted alongside the other UWB metrics. Use the full analysis and pluck `result["group_delay"]`.
 
 ## Common gotchas
 
-- **Phase unwrapping** — `compute_group_delay_from_s21` handles this internally, but the sweep needs enough frequency density (≥ 200 points typical) to unwrap cleanly.
-- **Antenna pair vs DUT** — measured group delay includes BOTH antennas plus the air gap. Subtract a reference air-only measurement if you only want the DUT contribution.
+- **Phase unwrapping**: `compute_group_delay_from_s21` handles this internally, but the sweep needs enough frequency density (≥ 200 points typical) to unwrap cleanly.
+- **Antenna pair vs DUT**: measured group delay includes BOTH antennas plus the air gap. Subtract a reference air-only measurement if you only want the DUT contribution.

@@ -28,7 +28,7 @@ All 34 RFlect MCP tools, organized by category. Full signatures and return shape
 | Tool                       | Purpose                                                     |
 |----------------------------|-------------------------------------------------------------|
 | `generate_report(output_path, options, title, metadata)` | DOCX with plots, tables, AI summary  |
-| `preview_report(options)`  | What the report would contain — no file written             |
+| `preview_report(options)`  | What the report would contain. No file written             |
 | `get_report_options()`     | All filtering / customization options                       |
 
 ## Bulk (5)
@@ -89,7 +89,7 @@ See [Recipes](recipes.md) for usage patterns.
 |----------------------------|-------------------------------------------------------------|
 | `analyze_iperf_angle_sweep(session_dir, reference_session_dir, out_dir, mean_threshold_mbps, worst_threshold_mbps)` | Per-angle throughput delta of an installed antenna vs a reference, across azimuth |
 
-Compares two bench iperf sessions — an installed-antenna session and a matched reference-antenna session recorded at the same azimuth angles. For each `(channel, mode)` cell it computes the per-angle deltas (installed − reference) and a roll-up: mean, median, worst-angle, best-angle, spread, and p10/p90. It writes `summary.csv`, `summary.json`, a polar PNG per cell, and a markdown `report.md` with a configurable adequacy verdict.
+Compares two bench iperf sessions. An installed-antenna session and a matched reference-antenna session recorded at the same azimuth angles. For each `(channel, mode)` cell it computes the per-angle deltas (installed − reference) and a roll-up: mean, median, worst-angle, best-angle, spread, and p10/p90. It writes `summary.csv`, `summary.json`, a polar PNG per cell, and a markdown `report.md` with a configurable adequacy verdict.
 
 Returns:
 ```python
@@ -118,7 +118,7 @@ Deterministic wrappers over `plot_antenna` math (no LLM, no network). Each retur
 | `analyze_mimo_diversity(ecc, snr_db, snr_sweep_db, fading, rician_k)` | ECC → Vaughan-Andersen diversity gain, 2×2 capacity, isolation rating, optional capacity-vs-SNR curve |
 | `generate_active_cal(power_measurement_file, gain_standard_file, hpol_file, vpol_file, freq_list, cable_loss)` | Generate an active chamber cal file + summary; auto-records into cal-drift history |
 
-`compare_antennas` operates on the loaded-measurement store (import first). The others take agent-supplied arrays/scalars — pair them with measured values (e.g. use the peak gain from `get_gain_statistics` as `tx_gain_dbi`, or an ECC from measured patterns for `analyze_mimo_diversity`).
+`compare_antennas` operates on the loaded-measurement store (import first). The others take agent-supplied arrays/scalars: pair them with measured values (e.g. use the peak gain from `get_gain_statistics` as `tx_gain_dbi`, or an ECC from measured patterns for `analyze_mimo_diversity`).
 
 ## Misc (3)
 
@@ -126,18 +126,18 @@ Deterministic wrappers over `plot_antenna` math (no LLM, no network). Each retur
 |----------------------------|-------------------------------------------------------------|
 | `get_measurement_details(measurement_name)` | Inspect one loaded measurement                |
 | `batch_analyze_frequencies()` | Re-run analysis across all loaded frequencies            |
-| `rflect://help`            | Help resource — server prints categorized tool list         |
+| `rflect://help`            | Help resource: server prints categorized tool list         |
 
 ## Source of truth
 
 Registration entry points:
 
-- `rflect-mcp/tools/import_tools.py` — `register_import_tools(mcp)`
-- `rflect-mcp/tools/analysis_tools.py` — `register_analysis_tools(mcp)`
-- `rflect-mcp/tools/report_tools.py` — `register_report_tools(mcp)`
-- `rflect-mcp/tools/bulk_tools.py` — `register_bulk_tools(mcp)`
-- `rflect-mcp/tools/uwb_tools.py` — `register_uwb_tools(mcp)`
-- `rflect-mcp/tools/cal_drift_tools.py` — `register_cal_drift_tools(mcp)`
-- `rflect-mcp/tools/orchestration.py` — `register_orchestration_tools(mcp)`
+- `rflect-mcp/tools/import_tools.py`: `register_import_tools(mcp)`
+- `rflect-mcp/tools/analysis_tools.py`: `register_analysis_tools(mcp)`
+- `rflect-mcp/tools/report_tools.py`: `register_report_tools(mcp)`
+- `rflect-mcp/tools/bulk_tools.py`: `register_bulk_tools(mcp)`
+- `rflect-mcp/tools/uwb_tools.py`: `register_uwb_tools(mcp)`
+- `rflect-mcp/tools/cal_drift_tools.py`: `register_cal_drift_tools(mcp)`
+- `rflect-mcp/tools/orchestration.py`: `register_orchestration_tools(mcp)`
 
 All registered in `rflect-mcp/server.py`.

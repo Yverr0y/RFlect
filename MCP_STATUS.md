@@ -1,4 +1,4 @@
-# RFlect MCP — Status & Tool Inventory
+# RFlect MCP: Status & Tool Inventory
 
 **Last Updated**: May 28, 2026
 **Current Version**: v5.0.0
@@ -45,11 +45,11 @@ the `narrative` parameter (omitted keys fall back to the deterministic text):
 All analysis math lives in `plot_antenna/` (`analysis_engine.py`, `calculations.py`,
 `uwb_analysis.py`, `cal_drift.py`, `file_utils.py`) as pure functions. The MCP tools
 are thin wrappers that validate input, call these functions, and return structured
-dicts. They never make network or LLM calls and never raise — failures surface in a
+dicts. They never make network or LLM calls and never raise: failures surface in a
 `warnings` list.
 
 ## History
 
-- **v5.0.0** — Removed the entire AI/LLM stack (chat, AI report generation, provider abstraction, API-key store). Added 6 RF-analysis MCP tools (comparison, S11, group delay, link budget, MIMO diversity, active-cal). `generate_report` gained the agent-authored `narrative` parameter. MCP tool count 35 → 41.
-- **v4.3.0** — `analyze_iperf_angle_sweep` (multi-angle throughput validation).
-- **v4.2.0** — `process_folder` single-call folder orchestration.
+- **v5.0.0**: Removed the entire AI/LLM stack (chat, AI report generation, provider abstraction, API-key store). Added 6 RF-analysis MCP tools (comparison, S11, group delay, link budget, MIMO diversity, active-cal). `generate_report` gained the agent-authored `narrative` parameter. MCP tool count 35 → 41.
+- **v4.3.0**: `analyze_iperf_angle_sweep` (multi-angle throughput validation).
+- **v4.2.0**: `process_folder` single-call folder orchestration.

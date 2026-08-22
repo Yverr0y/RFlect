@@ -1,6 +1,6 @@
 # Measurement Types & Analyses
 
-Every measurement type and analysis RFlect supports, the input it expects, what it computes, and the MCP tool that drives it. RFlect is fully deterministic — every value here is computed from your data, with no LLM or API key involved.
+Every measurement type and analysis RFlect supports, the input it expects, what it computes, and the MCP tool that drives it. RFlect is fully deterministic. Every value here is computed from your data, with no LLM or API key involved.
 
 ## Scan types (primary measurement modes)
 
@@ -34,6 +34,6 @@ Every measurement type and analysis RFlect supports, the input it expects, what 
 
 ## Where the math lives
 
-All analyses are pure, deterministic functions in `plot_antenna/` (`calculations.py`, `analysis_engine.py`, `uwb_analysis.py`, `cal_drift.py`, `file_utils.py`). The MCP tools in `rflect-mcp/tools/` are thin wrappers that validate inputs, call these functions, and return structured results — they never make network or LLM calls.
+All analyses are pure, deterministic functions in `plot_antenna/` (`calculations.py`, `analysis_engine.py`, `uwb_analysis.py`, `cal_drift.py`, `file_utils.py`). The MCP tools in `rflect-mcp/tools/` are thin wrappers that validate inputs, call these functions, and return structured results. They never make network or LLM calls.
 
 See the [Tools Reference](../mcp/tools-reference.md) for signatures and return shapes, and the [User Guide](../user-guide/active-trp.md) for the methodology behind each measurement type.

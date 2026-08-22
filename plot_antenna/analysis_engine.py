@@ -199,7 +199,7 @@ class AntennaAnalyzer:
         n_phi = len(unique_phi)
 
         if n_theta * n_phi != len(gain_data_1d):
-            # Data does not fit expected grid shape — cannot form 2D grid
+            # Data does not fit expected grid shape: cannot form 2D grid
             return None
 
         try:
@@ -341,7 +341,7 @@ class AntennaAnalyzer:
         sidelobes = []
         for idx in local_max[1:]:
             if left <= idx <= right:
-                continue  # inside the main lobe — not a sidelobe
+                continue  # inside the main lobe. Not a sidelobe
             sll = float(cut_gain[idx]) - main_gain
             sidelobes.append(
                 {

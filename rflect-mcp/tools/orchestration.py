@@ -1,7 +1,7 @@
 """
 Orchestration tools for RFlect MCP Server.
 
-Provides `process_folder` — a single entry point that scans a folder of
+Provides `process_folder`. A single entry point that scans a folder of
 chamber output, picks the right workflow (passive pair, active TRP, cal
 drift, UWB), runs it, and optionally produces a DOCX report. Designed so
 an AI client (Claude, Cline, etc.) can run a standard RFlect procedure
@@ -76,7 +76,7 @@ def _detect_intent(scan: Dict[str, List[str]]) -> tuple[Optional[str], List[str]
     mixed: List[str] = []
     if len(categories) > 1:
         summary = ", ".join(f"{name}({count})" for name, count in categories)
-        mixed.append(f"mixed_intents_detected: {summary} — chose {chosen}")
+        mixed.append(f"mixed_intents_detected: {summary}: chose {chosen}")
     return chosen, mixed
 
 

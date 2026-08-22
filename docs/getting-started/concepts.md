@@ -28,12 +28,12 @@ Combined into **total gain** = $10 \log_{10}(|E_\theta|^2 + |E_\phi|^2)$ relativ
 
 Derived metrics:
 
-- **Axial Ratio (AR)** — major/minor axis ratio of the polarization ellipse
-- **Tilt Angle** — orientation of the polarization ellipse
-- **XPD** — Cross-Polarization Discrimination, $20 \log_{10}(\text{co-pol field}/\text{cross-pol field})$
-- **Sense** — RHCP vs LHCP (right- vs left-hand circular polarization)
+- **Axial Ratio (AR)**: major/minor axis ratio of the polarization ellipse
+- **Tilt Angle**: orientation of the polarization ellipse
+- **XPD**: Cross-Polarization Discrimination, $20 \log_{10}(\text{co-pol field}/\text{cross-pol field})$
+- **Sense**: RHCP vs LHCP (right- vs left-hand circular polarization)
 
-## TRP — Total Radiated Power
+## TRP: Total Radiated Power
 
 IEEE-standard solid-angle integration with $\sin\theta$ Jacobian:
 
@@ -43,20 +43,20 @@ RFlect's TRP is verified to within 0.002 dB of the chamber's own report on refer
 
 ## Efficiency vs directivity
 
-- **Efficiency** $\eta$ — radiated power / accepted power. Includes ohmic and mismatch losses.
-- **Directivity** $D$ — peak gain divided by average gain over the sphere (the "shape" of the pattern).
+- **Efficiency** $\eta$: radiated power / accepted power. Includes ohmic and mismatch losses.
+- **Directivity** $D$: peak gain divided by average gain over the sphere (the "shape" of the pattern).
 - **Gain** = $\eta \cdot D$
 
 ## Beamwidth
 
-- **HPBW** (Half-Power Beamwidth, aka -3 dB beamwidth) — angular width where gain drops to half-peak
+- **HPBW** (Half-Power Beamwidth, aka -3 dB beamwidth): angular width where gain drops to half-peak
 
 RFlect computes HPBW with proper boundary wrapping at 0/360°.
 
 ## Cal-drift epochs
 
-A "setup_group" tags a calibration run with its methodology epoch (e.g. `pre-2024-cable-change`, `2026-v2-mount`). Two runs in different groups are flagged on the cross-epoch consistency tab as not apples-to-apples — see [Cal Drift](../user-guide/cal-drift.md).
+A "setup_group" tags a calibration run with its methodology epoch (e.g. `pre-2024-cable-change`, `2026-v2-mount`). Two runs in different groups are flagged on the cross-epoch consistency tab as not apples-to-apples. See [Cal Drift](../user-guide/cal-drift.md).
 
 ## UWB / SFF
 
-For ultra-wideband antennas, gain isn't enough — you also care about preserving pulse shape across angles. **System Fidelity Factor (SFF)** = normalized cross-correlation between transmitted and received pulse. 1.0 = perfect; 0.95+ is typically good.
+For ultra-wideband antennas, gain isn't enough. You also care about preserving pulse shape across angles. **System Fidelity Factor (SFF)** = normalized cross-correlation between transmitted and received pulse. 1.0 = perfect; 0.95+ is typically good.

@@ -2,7 +2,7 @@
 
 Extracted from the oversized ``calculations.py`` as the first of several planned
 leaf-module splits. These two functions depend only on numpy (no other
-``calculations`` internals and no ``file_utils`` — the former ``read_passive_file``
+``calculations`` internals and no ``file_utils``. The former ``read_passive_file``
 reference was only in a docstring), so the extraction is free of circular-import
 risk. ``calculations`` re-exports both names, so existing
 ``from .calculations import extrapolate_pattern`` imports keep working.
@@ -119,14 +119,14 @@ def extrapolate_pattern(
         warning = None
     elif extrapolation_ratio < 0.50:
         quality = "fair"
-        warning = "Moderate extrapolation — verify against nearby measurements."
+        warning = "Moderate extrapolation: verify against nearby measurements."
     elif extrapolation_ratio < 0.75:
         quality = "poor"
-        warning = "Large extrapolation distance — results may be unreliable."
+        warning = "Large extrapolation distance: results may be unreliable."
     else:
         quality = "unreliable"
         warning = (
-            "Extrapolation exceeds 75% of measured bandwidth — "
+            "Extrapolation exceeds 75% of measured bandwidth: "
             "treat results as rough estimates only."
         )
 

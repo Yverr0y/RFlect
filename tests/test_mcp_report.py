@@ -1389,7 +1389,7 @@ class TestBandAwareFrequencySelection:
         """Key freq not in list should pick closest available."""
         from tools.report_tools import _select_representative_frequencies, _detect_rf_band
 
-        # Dataset with 5 MHz steps — 2440 is a key BLE freq and IS in the list
+        # Dataset with 5 MHz steps: 2440 is a key BLE freq and IS in the list
         freqs = list(range(2400, 2485, 5))  # 2400, 2405, ..., 2480
         band_info = _detect_rf_band(freqs)
         result = _select_representative_frequencies(freqs, 5, band_info=band_info)
@@ -1502,11 +1502,11 @@ class TestBandContextInProse:
             )
             band_info = _detect_rf_band(ble_freqs)
 
-            # Test at 2440 MHz — should mention CH18 (data channel 18 = center)
+            # Test at 2440 MHz: should mention CH18 (data channel 18 = center)
             prose = _build_pattern_prose(analyzer, 2440.0, "BLE_Test", band_info=band_info)
             assert "CH18" in prose
 
-            # Test at 2402 MHz — should mention CH37 (advertising channel)
+            # Test at 2402 MHz: should mention CH37 (advertising channel)
             prose = _build_pattern_prose(analyzer, 2402.0, "BLE_Test", band_info=band_info)
             assert "CH37" in prose
         finally:

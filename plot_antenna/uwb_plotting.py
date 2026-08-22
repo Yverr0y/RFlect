@@ -11,7 +11,7 @@ import matplotlib
 try:
     matplotlib.use("TkAgg")
 except ImportError:
-    # No display available (e.g. headless CI test collection) — fall back
+    # No display available (e.g. headless CI test collection): fall back
     # to a non-interactive backend instead of crashing on import.
     matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -245,7 +245,7 @@ def plot_input_vs_output_pulse(time_s, input_pulse, output_pulse, sff, delay_s):
 
     ax.set_xlabel("Time (ns)")
     ax.set_ylabel("Normalized Amplitude")
-    ax.set_title(f"Input vs Output Pulse — SFF = {sff:.4f}")
+    ax.set_title(f"Input vs Output Pulse: SFF = {sff:.4f}")
     ax.legend(loc="best")
     ax.grid(True, linestyle="--", alpha=0.5)
 

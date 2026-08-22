@@ -1,9 +1,9 @@
 # MCP Overview
 
-RFlect ships a [Model Context Protocol](https://modelcontextprotocol.io/) server so an AI agent (Claude Code, Cline, Continue, etc.) can drive RFlect programmatically — no GUI required.
+RFlect ships a [Model Context Protocol](https://modelcontextprotocol.io/) server so an AI agent (Claude Code, Cline, Continue, etc.) can drive RFlect programmatically. No GUI required.
 
 !!! tip "RFlect has no LLM of its own"
-    As of v5.0.0 RFlect makes **no outbound LLM/API calls and needs no API key or subscription.** It is a deterministic RF analysis + rendering toolkit. The driving MCP agent *is* the LLM: it calls RFlect's tools for data, and — if you want narrative prose in a report — authors it itself and passes it to `generate_report` via the `narrative` parameter.
+    As of v5.0.0 RFlect makes **no outbound LLM/API calls and needs no API key or subscription.** It is a deterministic RF analysis + rendering toolkit. The driving MCP agent *is* the LLM: it calls RFlect's tools for data, and. If you want narrative prose in a report: authors it itself and passes it to `generate_report` via the `narrative` parameter.
 
 ## What you can do over MCP
 
@@ -12,7 +12,7 @@ RFlect ships a [Model Context Protocol](https://modelcontextprotocol.io/) server
 - Compare antennas head-to-head; estimate link budget / range; compute MIMO diversity
 - Generate branded DOCX reports (deterministic prose by default, or agent-authored)
 - Generate active chamber calibration files and track calibration drift across time
-- **Run a standard procedure on a folder with a single call** via [`process_folder`](recipes.md) — auto-detects intent, runs the right workflow, optionally generates a report
+- **Run a standard procedure on a folder with a single call** via [`process_folder`](recipes.md): auto-detects intent, runs the right workflow, optionally generates a report
 
 ## Tool count
 
@@ -51,7 +51,7 @@ See [Recipes](recipes.md) for the full set of standard procedures.
 
 ## Where to next
 
-- [Installation](installation.md) — wire RFlect into Claude Code / Cline / generic clients
-- [Tools Reference](tools-reference.md) — every tool, signature, return shape
-- [Recipes](recipes.md) — standard procedures for common workflows
-- [Troubleshooting](troubleshooting.md) — what to do when it doesn't connect
+- [Installation](installation.md): wire RFlect into Claude Code / Cline / generic clients
+- [Tools Reference](tools-reference.md). Every tool, signature, return shape
+- [Recipes](recipes.md): standard procedures for common workflows
+- [Troubleshooting](troubleshooting.md): what to do when it doesn't connect

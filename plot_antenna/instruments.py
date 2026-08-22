@@ -21,7 +21,7 @@ import numpy as np
 
 
 # ---------------------------------------------------------------------------
-# #44 — SCPI VNA control
+# #44: SCPI VNA control
 # ---------------------------------------------------------------------------
 
 
@@ -135,7 +135,7 @@ class VnaController:
 
 
 # ---------------------------------------------------------------------------
-# #45 — chamber positioner control
+# #45: chamber positioner control
 # ---------------------------------------------------------------------------
 
 
@@ -196,7 +196,7 @@ class PositionerController:
     ) -> List[Tuple[float, float]]:
         """Visit a (theta x phi) grid, returning the realized positions in order.
 
-        This is the unattended full-sphere sweep primitive — pair it with
+        This is the unattended full-sphere sweep primitive: pair it with
         VnaController.read_s_parameter (or a chamber receiver read) at each point.
         """
         visited: List[Tuple[float, float]] = []

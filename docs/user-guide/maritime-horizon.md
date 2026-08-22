@@ -1,6 +1,6 @@
 # Maritime / Horizon Plots
 
-Specialized plots for on-water antenna analysis — where the link almost exclusively lives in a narrow band around the horizon.
+Specialized plots for on-water antenna analysis: where the link almost exclusively lives in a narrow band around the horizon.
 
 ## What "horizon band" means
 
@@ -41,4 +41,4 @@ process_folder("/path/to/lab/captures", intent="passive", report=True)
 
 ## Why "Maritime Power Fraction" was added (v4.1.8)
 
-The earlier "Horizon Efficiency" metric was confusingly close to 50% even for an isotropic antenna (because half the sphere's solid-angle is in any 180°-symmetric band). The dB-form `band_advantage_dB` is the right metric — 0 dB means isotropic, positive means horizon-favored. Both are shown for traceability.
+The earlier "Horizon Efficiency" metric was confusingly close to 50% even for an isotropic antenna (because half the sphere's solid-angle is in any 180°-symmetric band). The dB-form `band_advantage_dB` is the right metric: 0 dB means isotropic, positive means horizon-favored. Both are shown for traceability.

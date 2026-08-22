@@ -9,7 +9,7 @@ the documented bench format described in ``analyze_iperf_angle_sweep``.
 The tool computes per-angle deltas between the installed and reference
 antennas at matching (channel, mode) cells, emits a CSV / JSON summary,
 renders a polar plot per (channel, mode), and writes a short markdown
-report. It is intentionally decoupled from any specific bench harness — it
+report. It is intentionally decoupled from any specific bench harness. It
 only reads JSON.
 """
 
@@ -213,7 +213,7 @@ def _render_report_md(
     worst_threshold_mbps: float,
 ) -> str:
     L: List[str] = []
-    L.append("# Multi-angle iperf sweep — installed vs reference")
+    L.append("# Multi-angle iperf sweep: installed vs reference")
     L.append("")
     L.append(f"- installed session: `{installed_session}`")
     L.append(f"- reference session: `{reference_session}`")
@@ -235,7 +235,7 @@ def _render_report_md(
     L.append("|---:|------|--:|------------:|---------:|----------------:|---------------:|-------:|--------:|---------|")
     for r in summary_rows:
         if r["n_angles"] == 0:
-            L.append(f"| {r['wifi_channel']} | {r['iperf_mode']} | 0 | — | — | — | — | — | — | (no data) |")
+            L.append(f"| {r['wifi_channel']} | {r['iperf_mode']} | 0 | n/a |: | n/a |: | n/a |: | (no data) |")
             continue
         verdict = (
             "adequate"
@@ -258,7 +258,7 @@ def _render_report_md(
         L.append("## Polar plots")
         L.append("")
         for (ch, mode), path in sorted(polar_plot_paths.items()):
-            L.append(f"### Ch {ch} — {mode}")
+            L.append(f"### Ch {ch}: {mode}")
             L.append("")
             L.append(f"![Ch {ch} {mode}]({os.path.basename(path)})")
             L.append("")

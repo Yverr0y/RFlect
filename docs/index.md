@@ -1,6 +1,6 @@
 ---
-title: RFlect — antenna measurement visualization & analysis
-description: The RF engineer's deterministic toolkit for antenna-chamber measurement visualization and analysis — MCP-driven, no API key required.
+title: RFlect: antenna measurement visualization & analysis
+description: The RF engineer's deterministic toolkit for antenna-chamber measurement visualization and analysis: MCP-driven, no API key required.
 hide:
   - toc
 ---
@@ -13,7 +13,7 @@ hide:
   </div>
 </div>
 
-RFlect turns raw antenna-chamber and VNA output into publication-ready 2D/3D radiation pattern plots, TRP calculations, polarization analysis, UWB characterization, and DOCX reports — all validated against IEEE-standard methods.
+RFlect turns raw antenna-chamber and VNA output into publication-ready 2D/3D radiation pattern plots, TRP calculations, polarization analysis, UWB characterization, and DOCX reports. All validated against IEEE-standard methods.
 
 Whether you're characterizing a BLE chip antenna, qualifying a cellular array, or tracking calibration drift across multiple chamber sessions, RFlect handles the heavy lifting.
 
@@ -30,7 +30,7 @@ Whether you're characterizing a BLE chip antenna, qualifying a cellular array, o
 
 <a class="rflect-card" href="user-guide/passive-gain/">
 <strong>User Guide →</strong>
-<span>Active TRP, passive gain, S11, group delay, UWB, polarization, maritime — all the math.</span>
+<span>Active TRP, passive gain, S11, group delay, UWB, polarization, maritime. All the math.</span>
 </a>
 
 <a class="rflect-card" href="mcp/overview/">
@@ -50,18 +50,18 @@ Whether you're characterizing a BLE chip antenna, qualifying a cellular array, o
 
 <a class="rflect-card" href="hardware/file-formats/">
 <strong>Hardware &amp; Formats →</strong>
-<span>WTL chambers, Touchstone .s2p, S2VNA CSV, CST — the full input/output matrix.</span>
+<span>WTL chambers, Touchstone .s2p, S2VNA CSV, CST. The full input/output matrix.</span>
 </a>
 
 </div>
 
 ## Built for the way RF labs actually work
 
-- **No API key, no subscription, no LLM dependency** — RFlect is a deterministic RF analysis + rendering toolkit. Every metric is computed, not generated.
-- **MCP server** — 41 tools that let Claude Code, Cline, and other MCP clients drive RFlect programmatically. The agent *is* the LLM; RFlect provides the data and the rendering.
-- **GUI** — desktop app (Tk-based, dark theme) for interactive review
-- **Agent-authored reports** — DOCX with embedded plots and gain tables; prose is data-driven by default, or supplied by the driving agent via [`generate_report`](mcp/tools-reference.md)'s `narrative` parameter
-- **Cal-drift tracker** — record TRP-Cal runs over time, compare across epochs, flag setup-group mismatches
+- **No API key, no subscription, no LLM dependency**: RFlect is a deterministic RF analysis + rendering toolkit. Every metric is computed, not generated.
+- **MCP server**: 41 tools that let Claude Code, Cline, and other MCP clients drive RFlect programmatically. The agent *is* the LLM; RFlect provides the data and the rendering.
+- **GUI**: desktop app (Tk-based, dark theme) for interactive review
+- **Agent-authored reports**: DOCX with embedded plots and gain tables; prose is data-driven by default, or supplied by the driving agent via [`generate_report`](mcp/tools-reference.md)'s `narrative` parameter
+- **Cal-drift tracker**: record TRP-Cal runs over time, compare across epochs, flag setup-group mismatches
 
 ## Inputs at a glance
 

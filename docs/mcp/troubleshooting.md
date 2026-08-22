@@ -80,16 +80,16 @@ Run `list_measurement_files(folder)` to see what's in the folder.
 ## Mixed-intents warning
 
 ```
-"warnings": ["mixed_intents_detected: passive(2), active(1) — chose passive"]
+"warnings": ["mixed_intents_detected: passive(2), active(1): chose passive"]
 ```
 
-Not an error — RFlect picked the highest-priority intent. If you want a different choice, pass `intent=` explicitly:
+Not an error: RFlect picked the highest-priority intent. If you want a different choice, pass `intent=` explicitly:
 
 ```python
 process_folder(folder, intent="active")  # ignore the passive pair
 ```
 
-## Cal-drift import is idempotent — why?
+## Cal-drift import is idempotent: why?
 
 Each `TRP Cal *.txt` is content-hashed (SHA-256) on ingest. Re-running `cal_drift_ingest` on the same directory will report `skipped_duplicate` instead of double-recording.
 

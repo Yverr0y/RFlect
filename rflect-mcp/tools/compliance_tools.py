@@ -149,7 +149,7 @@ def register_compliance_tools(mcp):
 
         Returns:
             Dict: band, checks [{ruleset, limit_dbm, measured_dbm, margin_db,
-            verdict, note}], overall, warnings. Reference values only — verify
+            verdict, note}], overall, warnings. Reference values only: verify
             against the live regulation for your device class.
         """
         result: Dict[str, Any] = {

@@ -104,7 +104,7 @@ def _mixed_mode_4port(S: np.ndarray) -> Dict[str, np.ndarray]:
     """Single-ended 4-port -> mixed-mode blocks (Sdd, Scc, Sdc, Scd).
 
     Port mapping: differential pair 1 = ports (1,3), pair 2 = ports (2,4)
-    (0-based 0,2 and 1,3) — the common balanced convention. Each block is 2x2.
+    (0-based 0,2 and 1,3). The common balanced convention. Each block is 2x2.
     """
     # M S M^-1 with the standard mixed-mode transform; do it blockwise.
     # Indices (0-based): pair1 = (0,2), pair2 = (1,3).

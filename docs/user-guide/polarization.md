@@ -10,7 +10,7 @@ The ellipse has:
 - **Semi-major axis** $a$
 - **Semi-minor axis** $b$  
 - **Tilt angle** $\tau$ relative to a reference axis
-- **Sense** — RH (clockwise looking from source) or LH
+- **Sense**: RH (clockwise looking from source) or LH
 
 ## Axial Ratio (AR)
 
@@ -20,13 +20,13 @@ $$\text{AR (dB)} = 20\log_{10}\!\left(\frac{a}{b}\right)$$
 - AR = ∞ dB → perfect linear polarization (b = 0)
 - Typical CP antenna: AR ≤ 3 dB in the main beam
 
-RFlect uses the full polarization-ellipse derivation, including the $\cos(2\delta)$ discriminant. Phase $\delta$ is recovered correctly — RFlect does NOT use the magnitude-only approximation.
+RFlect uses the full polarization-ellipse derivation, including the $\cos(2\delta)$ discriminant. Phase $\delta$ is recovered correctly: RFlect does NOT use the magnitude-only approximation.
 
 ## XPD (Cross-Polarization Discrimination)
 
 $$\text{XPD (dB)} = 20\log_{10}\!\left(\frac{|E_{\text{co-pol}}|}{|E_{\text{cross-pol}}|}\right)$$
 
-Note the **20 log** — XPD is a field ratio. Common mistake: using 10·log. RFlect uses the correct formula.
+Note the **20 log**: XPD is a field ratio. Common mistake: using 10·log. RFlect uses the correct formula.
 
 ## RHCP / LHCP sense
 

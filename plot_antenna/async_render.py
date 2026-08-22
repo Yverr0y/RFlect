@@ -2,7 +2,7 @@
 
 Heavy matplotlib renders (3D patterns, MIMO sweeps) block the Tk event loop when
 drawn on the GUI thread via pyplot/TkAgg, freezing the UI. This module renders to
-a PNG using a *standalone* ``Figure`` + ``FigureCanvasAgg`` — it never touches the
+a PNG using a *standalone* ``Figure`` + ``FigureCanvasAgg``. It never touches the
 global pyplot state or the TkAgg backend, so it is safe to run on a worker thread.
 The GUI can then load the finished PNG back on the main thread.
 
@@ -60,7 +60,7 @@ def render_async(
 
     Returns the started :class:`threading.Thread`. In a Tk app, the callbacks
     should marshal back to the main thread (e.g. ``root.after(0, ...)``) before
-    touching widgets — matplotlib's Agg render is done by the time they fire, so
+    touching widgets: matplotlib's Agg render is done by the time they fire, so
     only the lightweight image-load needs the GUI thread.
     """
 

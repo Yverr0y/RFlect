@@ -176,7 +176,7 @@ def plot_link_budget_summary(
         table[0, j].set_facecolor("#4A90E2")
         table[0, j].set_text_props(color="white", fontweight="bold")
 
-    # Highlight margin row — find explicitly by content rather than fragile offset
+    # Highlight margin row: find explicitly by content rather than fragile offset
     margin_row_data_idx = next(
         (i for i, row in enumerate(table_data) if "Link Margin" in row[0]), None
     )
@@ -188,7 +188,7 @@ def plot_link_budget_summary(
             table[margin_row_tbl, j].set_text_props(color="white", fontweight="bold")
 
     ax_table.set_title(
-        f"Link Budget Summary — {freq_mhz} MHz",
+        f"Link Budget Summary: {freq_mhz} MHz",
         fontsize=13,
         fontweight="bold",
         pad=20,
@@ -205,7 +205,7 @@ def plot_link_budget_summary(
         phi_rad, range_m, width=bar_width, color=colors, alpha=0.7, edgecolor="gray", linewidth=0.3
     )
 
-    # Target range ring — close the loop so the dashed circle is complete
+    # Target range ring: close the loop so the dashed circle is complete
     phi_rad_closed = np.append(phi_rad, phi_rad[0])
     target_ring = np.full_like(phi_rad_closed, target_range_m)
     ax_polar.plot(
@@ -233,7 +233,7 @@ def plot_link_budget_summary(
         plt.show()
 
 
-# ——— INDOOR PROPAGATION PLOTS ————————————————————————————————————
+# --- INDOOR PROPAGATION PLOTS ------------------------------------------------
 
 
 def plot_indoor_coverage_map(
@@ -340,7 +340,7 @@ def plot_indoor_coverage_map(
     ax_hm.set_xlabel("Azimuth φ (°)")
     ax_hm.set_ylabel("Distance (m)")
     ax_hm.set_title(
-        f"Received Power at Horizon (θ=90°)\n{environment} — {freq_mhz} MHz",
+        f"Received Power at Horizon (θ=90°)\n{environment}: {freq_mhz} MHz",
         fontsize=11,
         fontweight="bold",
     )
@@ -386,7 +386,7 @@ def plot_indoor_coverage_map(
         plt.show()
 
 
-# ——— MULTIPATH FADING PLOTS ——————————————————————————————————————
+# --- MULTIPATH FADING PLOTS --------------------------------------------------
 
 
 def plot_fading_analysis(
@@ -819,7 +819,7 @@ def plot_wearable_assessment(
         table[1, j].set_facecolor("#E8F0FE")
 
     ax_table.set_title(
-        f"Body-Worn Performance — {freq_mhz} MHz",
+        f"Body-Worn Performance: {freq_mhz} MHz",
         fontsize=12,
         fontweight="bold",
         pad=20,

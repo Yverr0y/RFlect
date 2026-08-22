@@ -38,7 +38,7 @@ def resource_path(relative_path):
     """Get absolute path to resource, works for dev and for PyInstaller."""
     try:
         # PyInstaller creates a temp folder and stores path in _MEIPASS;
-        # absent in a normal dev run (expected — not an error).
+        # absent in a normal dev run (expected. Not an error).
         base_path = sys._MEIPASS  # type: ignore
     except AttributeError:
         base_path = os.path.join(os.path.dirname(__file__), "..", "..")

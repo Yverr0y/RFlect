@@ -8,13 +8,13 @@ Chamber calibrations drift. Cables age. Connectors loosen. Without a history, yo
 
 ## How it works
 
-1. **Ingest** — point at a directory of archived `TRP Cal *.txt` files (and optional `TRP Cal Summary *.txt` siblings). Each is recorded with a unique `run_id`, a content SHA-256, and metadata pulled from the file header + filename.
-2. **Compare** — pick any two runs as `baseline` and `current`. RFlect computes per-frequency ΔdB (H and V), a consistency-diff (did the gain standard change? same cable? same fixture?), and a missing-frequency audit.
-3. **Report** — export markdown, PDF, or PNG drift reports for review or filing.
+1. **Ingest**: point at a directory of archived `TRP Cal *.txt` files (and optional `TRP Cal Summary *.txt` siblings). Each is recorded with a unique `run_id`, a content SHA-256, and metadata pulled from the file header + filename.
+2. **Compare**: pick any two runs as `baseline` and `current`. RFlect computes per-frequency ΔdB (H and V), a consistency-diff (did the gain standard change? same cable? same fixture?), and a missing-frequency audit.
+3. **Report**: export markdown, PDF, or PNG drift reports for review or filing.
 
 ## Setup groups (methodology epochs)
 
-A `setup_group` is a free-text tag like `pre-2024-cable-change` or `2026-v2-mount`. When you compare two runs in different groups, the consistency tab loudly flags the mismatch — that comparison may not be apples-to-apples.
+A `setup_group` is a free-text tag like `pre-2024-cable-change` or `2026-v2-mount`. When you compare two runs in different groups, the consistency tab loudly flags the mismatch. That comparison may not be apples-to-apples.
 
 ```python
 cal_drift_set_setup_group(run_id, "pre-2024-cable-change")
@@ -75,5 +75,5 @@ cal_drift_report(
 
 ## See also
 
-- `plot_antenna/cal_drift.py` — implementation
-- `tests/test_cal_drift.py` — 18 tests covering ingest, compare, consistency flags, idempotency, exports
+- `plot_antenna/cal_drift.py`: implementation
+- `tests/test_cal_drift.py`: 18 tests covering ingest, compare, consistency flags, idempotency, exports

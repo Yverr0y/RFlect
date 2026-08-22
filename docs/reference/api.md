@@ -2,7 +2,7 @@
 
 Pure-Python entry points you can import from `plot_antenna`.
 
-## `AntennaAnalyzer` — `plot_antenna.ai_analysis`
+## `AntennaAnalyzer`: `plot_antenna.ai_analysis`
 
 GUI-independent analysis engine. Same code path used by the AI chat assistant and the MCP analysis tools.
 
@@ -28,7 +28,7 @@ pattern = analyzer.analyze_pattern(frequency=2450.0)
 polz    = analyzer.compare_polarizations(frequency=2450.0)
 ```
 
-## File parsers — `plot_antenna.file_utils`
+## File parsers: `plot_antenna.file_utils`
 
 | Function                         | Returns                                          |
 |----------------------------------|--------------------------------------------------|
@@ -41,7 +41,7 @@ polz    = analyzer.compare_polarizations(frequency=2450.0)
 | `convert_HpolVpol_files(...)`     | Export to CST `.ffs`                            |
 | `validate_hpol_vpol_files(...)`   | `(bool, error_msg)` tuple                       |
 
-## Calculations — `plot_antenna.calculations`
+## Calculations: `plot_antenna.calculations`
 
 | Function                         | Returns                                          |
 |----------------------------------|--------------------------------------------------|
@@ -49,7 +49,7 @@ polz    = analyzer.compare_polarizations(frequency=2450.0)
 | `calculate_active_variables(...)`| TRP, H/V TRP, total power 2D, min/nom stats      |
 | `extract_passive_frequencies(path)` | List of MHz available in a passive file       |
 
-## UWB — `plot_antenna.uwb_analysis`
+## UWB: `plot_antenna.uwb_analysis`
 
 | Function                         | Returns                                          |
 |----------------------------------|--------------------------------------------------|
@@ -61,7 +61,7 @@ polz    = analyzer.compare_polarizations(frequency=2450.0)
 | `analyze_return_loss(freq, s11_dB, threshold_dB)` | Bandwidth + band edges + FBW %    |
 | `parse_touchstone(path)`         | Dict with `freq_hz`, `s11`, `s21`                |
 
-## Calibration drift — `plot_antenna.cal_drift`
+## Calibration drift: `plot_antenna.cal_drift`
 
 | Function                         | Purpose                                          |
 |----------------------------------|--------------------------------------------------|
@@ -77,7 +77,7 @@ polz    = analyzer.compare_polarizations(frequency=2450.0)
 | `set_setup_group(run_id, group)` | Tag a run's methodology epoch                    |
 | `update_notes(run_id, text)`     | Operator notes                                   |
 
-## Analysis engine — `plot_antenna.analysis_engine`
+## Analysis engine: `plot_antenna.analysis_engine`
 
 The deterministic core that backs every MCP analysis tool. Pure NumPy, no LLM.
 
@@ -92,7 +92,7 @@ az.compare_polarizations(frequency=2450.0)  # dominant pol, XPD, balance
 az.get_horizon_statistics(...)              # horizon-plane stats
 ```
 
-## Propagation & MIMO — `plot_antenna.calculations`
+## Propagation & MIMO: `plot_antenna.calculations`
 
 | Function | Purpose |
 |---|---|
@@ -110,5 +110,5 @@ These are exposed over MCP via `estimate_link_budget` and `analyze_mimo_diversit
 !!! note "No LLM in v5.0.0"
     RFlect makes no outbound LLM/API calls and needs no API key. The MCP client
     is the LLM; RFlect supplies deterministic data and rendering. Report
-    narrative is data-driven by default or supplied by the agent — see
+    narrative is data-driven by default or supplied by the agent. See
     `generate_report`'s `narrative` parameter.

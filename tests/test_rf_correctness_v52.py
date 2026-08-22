@@ -15,7 +15,7 @@ from plot_antenna.calculations import fade_margin_for_reliability
 
 
 # ---------------------------------------------------------------------------
-# #22 — sidelobe detection must not report main-lobe shoulders as sidelobes
+# #22: sidelobe detection must not report main-lobe shoulders as sidelobes
 # ---------------------------------------------------------------------------
 
 
@@ -60,7 +60,7 @@ def test_clean_two_lobe_pattern_reports_the_sidelobe():
 
 
 # ---------------------------------------------------------------------------
-# #23 — exact Rician fade margin
+# #23: exact Rician fade margin
 # ---------------------------------------------------------------------------
 
 
