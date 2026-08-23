@@ -175,3 +175,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for coding standards, architecture detail
 [AGPL-3.0-or-later](LICENSE)
 
 Relicensed from GPL-3.0 to AGPL-3.0-or-later to match the rest of the RF/EMC engineering toolkit's licensing policy. See [eng-mcp-suite's licensing summary](https://github.com/RFingAdam/eng-mcp-suite/blob/main/LICENSE_SUMMARY.md) for the rationale.
+
+## Brand assets
+
+The project name and the logo files in this repository are not part of the licensed
+work. The licence above grants no permission to use them, except as needed to describe
+the origin of the work.
+
