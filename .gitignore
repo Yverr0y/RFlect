@@ -84,3 +84,7 @@ pyrightconfig.json
 .dmypy.json
 dmypy.json
 venv_build/
+
+# local scratch / session debris - never commit
+.tmp_review/
+.playwright-mcp/
