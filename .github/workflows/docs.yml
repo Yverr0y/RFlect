@@ -39,7 +39,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r docs/requirements.txt
 
-      - name: Build site (strict: fail on dead links / missing nav entries)
+      - name: "Build site (strict: fail on dead links / missing nav entries)"
         run: mkdocs build --strict
 
       - name: Deploy to GitHub Pages
